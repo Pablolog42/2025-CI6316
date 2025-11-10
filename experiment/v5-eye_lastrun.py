@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 10, 2025, at 19:05
+    on noviembre 10, 2025, at 19:21
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -33,6 +33,7 @@ import sys  # to get file system encoding
 
 import psychopy.iohub as io
 from psychopy.hardware import keyboard
+from psychopy.hardware.eyetracker import EyetrackerControl
 
 # Run 'Before Experiment' code from code
 block_number = 1
@@ -100,7 +101,7 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
 _fullScr = True
-_winSize = [1536, 864]
+_winSize = [1920, 1080]
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -472,6 +473,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     
     
+    etRecord = EyetrackerControl(
+        tracker=eyetracker,
+        actionType='Start Only'
+    )
     
     # --- Initialize components for Routine "trial" ---
     fondo = visual.ImageStim(
@@ -836,6 +841,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         )
     respuesta = keyboard.Keyboard(deviceName='respuesta')
     
+    # --- Initialize components for Routine "end" ---
+    etRecord_2 = EyetrackerControl(
+        tracker=eyetracker,
+        actionType='Stop Only'
+    )
+    
     # create some handy timers
     
     # global clock to track the time since experiment started
@@ -902,7 +913,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine wait
         wait = data.Routine(
             name='wait',
-            components=[text],
+            components=[text, etRecord],
         )
         wait.status = NOT_STARTED
         continueRoutine = True
@@ -973,6 +984,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update status
                     text.status = FINISHED
                     text.setAutoDraw(False)
+            
+            # *etRecord* updates
+            
+            # if etRecord is starting this frame...
+            if etRecord.status == NOT_STARTED and t >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                etRecord.frameNStart = frameN  # exact frame index
+                etRecord.tStart = t  # local t and not account for scr refresh
+                etRecord.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(etRecord, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.addData('etRecord.started', t)
+                # update status
+                etRecord.status = STARTED
+                etRecord.start()
+            if etRecord.status == STARTED:
+                etRecord.tStop = t  # not accounting for scr refresh
+                etRecord.tStopRefresh = tThisFlipGlobal  # on global time
+                etRecord.frameNStop = frameN  # exact frame index
+                etRecord.status = FINISHED
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -2297,6 +2328,115 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if thisSession is not None:
         # if running in a Session with a Liaison client, send data up to now
         thisSession.sendExperimentData()
+    
+    # --- Prepare to start Routine "end" ---
+    # create an object to store info about Routine end
+    end = data.Routine(
+        name='end',
+        components=[etRecord_2],
+    )
+    end.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # store start times for end
+    end.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    end.tStart = globalClock.getTime(format='float')
+    end.status = STARTED
+    thisExp.addData('end.started', end.tStart)
+    end.maxDuration = None
+    # keep track of which components have finished
+    endComponents = end.components
+    for thisComponent in end.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "end" ---
+    end.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine and routineTimer.getTime() < 1.0:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *etRecord_2* updates
+        if etRecord_2.status == NOT_STARTED:
+            etRecord_2.frameNStart = frameN  # exact frame index
+            etRecord_2.tStart = t  # local t and not account for scr refresh
+            etRecord_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(etRecord_2, 'tStartRefresh')  # time at next scr refresh
+            etRecord_2.status = STARTED
+        
+        # if etRecord_2 is stopping this frame...
+        if etRecord_2.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > etRecord_2.tStartRefresh + 1.0-frameTolerance:
+                # keep track of stop time/frame for later
+                etRecord_2.tStop = t  # not accounting for scr refresh
+                etRecord_2.tStopRefresh = tThisFlipGlobal  # on global time
+                etRecord_2.frameNStop = frameN  # exact frame index
+                # add timestamp to datafile
+                thisExp.addData('etRecord_2.stopped', t)
+                # update status
+                etRecord_2.status = FINISHED
+                etRecord_2.stop()
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=end,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            end.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in end.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "end" ---
+    for thisComponent in end.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for end
+    end.tStop = globalClock.getTime(format='float')
+    end.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('end.stopped', end.tStop)
+    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
+    if end.maxDurationReached:
+        routineTimer.addTime(-end.maxDuration)
+    elif end.forceEnded:
+        routineTimer.reset()
+    else:
+        routineTimer.addTime(-1.000000)
+    thisExp.nextEntry()
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)
