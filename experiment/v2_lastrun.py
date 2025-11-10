@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 09, 2025, at 23:27
+    on noviembre 09, 2025, at 23:52
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -33,6 +33,14 @@ import sys  # to get file system encoding
 
 from psychopy.hardware import keyboard
 
+# Run 'Before Experiment' code from code_1
+# 1. Definir las listas de coordenadas
+x_coords = [-0.4, 0.08541666667, 0.5645833333]
+y_coords = [0.3518518519, 0.1296296296, -0.09259259259, -0.3148148148, -0.537037037, -0.7592592593]
+
+# 2. Crear la matriz anidada usando una lista de comprensión
+# La estructura es positions[indice_x][indice_y]
+positions = [[(x, y) for y in y_coords] for x in x_coords]
 # --- Setup global variables (available in all functions) ---
 # create a device manager to handle hardware (keyboards, mice, mirophones, speakers, etc.)
 deviceManager = hardware.DeviceManager()
@@ -40,7 +48,7 @@ deviceManager = hardware.DeviceManager()
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 # store info about the experiment session
 psychopyVersion = '2025.1.1'
-expName = 'v1'  # from the Builder filename that created this script
+expName = 'v2'  # from the Builder filename that created this script
 expVersion = ''
 # a list of functions to run when the experiment ends (starts off blank)
 runAtExit = []
@@ -64,7 +72,7 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
 _fullScr = True
-_winSize = [1920, 1080]
+_winSize = (1024, 768)
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -133,7 +141,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v1_lastrun.py',
+        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v2_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -204,8 +212,8 @@ def setupWindow(expInfo=None, win=None):
             winType='pyglet', allowGUI=False, allowStencil=True,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
-            blendMode='add', useFBO=True,
-            units='pix',
+            blendMode='avg', useFBO=True,
+            units='height',
             checkTiming=False  # we're going to do this ourselves in a moment
         )
     else:
@@ -214,7 +222,7 @@ def setupWindow(expInfo=None, win=None):
         win.colorSpace = 'rgb'
         win.backgroundImage = ''
         win.backgroundFit = 'none'
-        win.units = 'pix'
+        win.units = 'height'
     if expInfo is not None:
         # get/measure frame rate if not already in expInfo
         if win._monitorFrameRate is None:
@@ -371,29 +379,77 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # Start Code - component code to be run after the window creation
     
     # --- Initialize components for Routine "trial" ---
-    fondo_eleccion = visual.ImageStim(
+    fondo = visual.ImageStim(
         win=win,
-        name='fondo_eleccion', units='norm', 
+        name='fondo', units='norm', 
         image='fondo_eleccion.png', mask=None, anchor='center',
-        ori=0.0, pos=[0.0, 0.0], draggable=False, size=[2.0, 2.0],
+        ori=0.0, pos=(0, 0), draggable=False, size=(2, 2),
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
         texRes=128.0, interpolate=True, depth=0.0)
-    textbox_3 = visual.TextBox2(
-         win, text='Hola3', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[0,0], draggable=False, units='pix',     letterHeight=0.05,
-         size=[170,100], borderWidth=2.0,
-         color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb',
+    textbox = visual.TextBox2(
+         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[1][2]], draggable=False, units='norm',     letterHeight=0.05,
+         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+         color='black', colorSpace='rgb',
          opacity=None,
          bold=False, italic=False,
          lineSpacing=1.0, speechPoint=None,
          padding=0.0, alignment='center',
-         anchor='center', overflow='scroll',
-         fillColor=[1.0000, 0.8431, 0.6078], borderColor=None,
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='textbox',
+         depth=-1, autoLog=True,
+    )
+    textbox_2 = visual.TextBox2(
+         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[-0.4 ,0.3518518519], draggable=False, units='norm',     letterHeight=0.05,
+         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='textbox_2',
+         depth=-3, autoLog=True,
+    )
+    textbox_3 = visual.TextBox2(
+         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[1][3]], draggable=False, units='norm',     letterHeight=0.05,
+         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
          name='textbox_3',
-         depth=-1, autoLog=True,
+         depth=-4, autoLog=True,
+    )
+    textbox_4 = visual.TextBox2(
+         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[2][1]], draggable=False, units='norm',     letterHeight=0.05,
+         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='textbox_4',
+         depth=-5, autoLog=True,
     )
     
     # create some handy timers
@@ -428,12 +484,15 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine trial
     trial = data.Routine(
         name='trial',
-        components=[fondo_eleccion, textbox_3],
+        components=[fondo, textbox, textbox_2, textbox_3, textbox_4],
     )
     trial.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    textbox.reset()
+    textbox_2.reset()
     textbox_3.reset()
+    textbox_4.reset()
     # store start times for trial
     trial.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     trial.tStart = globalClock.getTime(format='float')
@@ -464,23 +523,63 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
         
-        # *fondo_eleccion* updates
+        # *fondo* updates
         
-        # if fondo_eleccion is starting this frame...
-        if fondo_eleccion.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if fondo is starting this frame...
+        if fondo.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            fondo_eleccion.frameNStart = frameN  # exact frame index
-            fondo_eleccion.tStart = t  # local t and not account for scr refresh
-            fondo_eleccion.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(fondo_eleccion, 'tStartRefresh')  # time at next scr refresh
+            fondo.frameNStart = frameN  # exact frame index
+            fondo.tStart = t  # local t and not account for scr refresh
+            fondo.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(fondo, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'fondo_eleccion.started')
+            thisExp.timestampOnFlip(win, 'fondo.started')
             # update status
-            fondo_eleccion.status = STARTED
-            fondo_eleccion.setAutoDraw(True)
+            fondo.status = STARTED
+            fondo.setAutoDraw(True)
         
-        # if fondo_eleccion is active this frame...
-        if fondo_eleccion.status == STARTED:
+        # if fondo is active this frame...
+        if fondo.status == STARTED:
+            # update params
+            pass
+        
+        # *textbox* updates
+        
+        # if textbox is starting this frame...
+        if textbox.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            textbox.frameNStart = frameN  # exact frame index
+            textbox.tStart = t  # local t and not account for scr refresh
+            textbox.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(textbox, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'textbox.started')
+            # update status
+            textbox.status = STARTED
+            textbox.setAutoDraw(True)
+        
+        # if textbox is active this frame...
+        if textbox.status == STARTED:
+            # update params
+            pass
+        
+        # *textbox_2* updates
+        
+        # if textbox_2 is starting this frame...
+        if textbox_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            textbox_2.frameNStart = frameN  # exact frame index
+            textbox_2.tStart = t  # local t and not account for scr refresh
+            textbox_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(textbox_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'textbox_2.started')
+            # update status
+            textbox_2.status = STARTED
+            textbox_2.setAutoDraw(True)
+        
+        # if textbox_2 is active this frame...
+        if textbox_2.status == STARTED:
             # update params
             pass
         
@@ -501,6 +600,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if textbox_3 is active this frame...
         if textbox_3.status == STARTED:
+            # update params
+            pass
+        
+        # *textbox_4* updates
+        
+        # if textbox_4 is starting this frame...
+        if textbox_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            textbox_4.frameNStart = frameN  # exact frame index
+            textbox_4.tStart = t  # local t and not account for scr refresh
+            textbox_4.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(textbox_4, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'textbox_4.started')
+            # update status
+            textbox_4.status = STARTED
+            textbox_4.setAutoDraw(True)
+        
+        # if textbox_4 is active this frame...
+        if textbox_4.status == STARTED:
             # update params
             pass
         

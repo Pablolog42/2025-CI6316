@@ -91,11 +91,7 @@ async function updateInfo() {
 
 var trialClock;
 var fondo_eleccion;
-var caja_1_uber;
-var caja_1_metro;
-var caja_1_caminata;
-var textbox_1_metro;
-var textbox_2_metro;
+var textbox;
 var globalClock;
 var routineTimer;
 async function experimentInit() {
@@ -114,65 +110,17 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : 0.0 
   });
-  caja_1_uber = new visual.Rect ({
-    win: psychoJS.window, name: 'caja_1_uber', units : 'norm', 
-    width: [0.08854166667, 0.09259259259][0], height: [0.08854166667, 0.09259259259][1],
-    ori: 0.0, 
-    pos: [(- 0.40850694444277774), (- 0.3143518518505556)], 
-    draggable: false, 
-    anchor: 'center', 
-    lineWidth: 1.0, 
-    lineColor: new util.Color('white'), 
-    fillColor: new util.Color([(- 1.0), (- 1.0), (- 1.0)]), 
-    colorSpace: 'rgb', 
-    opacity: undefined, 
-    depth: -1, 
-    interpolate: true, 
-  });
-  
-  caja_1_metro = new visual.ShapeStim ({
-    win: psychoJS.window, name: 'caja_1_metro', 
-    vertices: [[-[0.16805555555555557, 0.1361111111111111][0]/2.0, -[0.16805555555555557, 0.1361111111111111][1]/2.0], [+[0.16805555555555557, 0.1361111111111111][0]/2.0, -[0.16805555555555557, 0.1361111111111111][1]/2.0], [0, [0.16805555555555557, 0.1361111111111111][1]/2.0]],
-    ori: 0.0, 
-    pos: [0.08541666666666668, 0.33055555555555555], 
-    draggable: false, 
-    anchor: 'center', 
-    lineWidth: 1.0, 
-    lineColor: new util.Color('white'), 
-    fillColor: new util.Color('white'), 
-    colorSpace: 'rgb', 
-    opacity: undefined, 
-    depth: -2, 
-    interpolate: true, 
-  });
-  
-  caja_1_caminata = new visual.ShapeStim ({
-    win: psychoJS.window, name: 'caja_1_caminata', 
-    vertices: [[-[0.1597222222222222, 0.1111111111111111][0]/2.0, -[0.1597222222222222, 0.1111111111111111][1]/2.0], [+[0.1597222222222222, 0.1111111111111111][0]/2.0, -[0.1597222222222222, 0.1111111111111111][1]/2.0], [0, [0.1597222222222222, 0.1111111111111111][1]/2.0]],
-    ori: 0.0, 
-    pos: [0.08402777777777777, 0.11805555555555555], 
-    draggable: false, 
-    anchor: 'center', 
-    lineWidth: 1.0, 
-    lineColor: new util.Color('white'), 
-    fillColor: new util.Color('white'), 
-    colorSpace: 'rgb', 
-    opacity: undefined, 
-    depth: -3, 
-    interpolate: true, 
-  });
-  
-  textbox_1_metro = new visual.TextBox({
+  textbox = new visual.TextBox({
     win: psychoJS.window,
-    name: 'textbox_1_metro',
-    text: '9:00 am',
+    name: 'textbox',
+    text: 'Hola mundoaasdasdasdasasd',
     placeholder: 'Type here...',
     font: 'Arial',
-    pos: [0.5645833333333333, 0.33194444444444443], 
+    pos: [0, 0], 
     draggable: false,
-    letterHeight: 0.05,
+    letterHeight: 0.6,
     lineSpacing: 1.0,
-    size: [0.1763888888888889, 0.125],  units: undefined, 
+    size: [0.5, 0.5],  units: undefined, 
     ori: 0.0,
     color: 'white', colorSpace: 'rgb',
     fillColor: undefined, borderColor: undefined,
@@ -185,33 +133,7 @@ async function experimentInit() {
     editable: false,
     multiline: true,
     anchor: 'center',
-    depth: -4.0 
-  });
-  
-  textbox_2_metro = new visual.TextBox({
-    win: psychoJS.window,
-    name: 'textbox_2_metro',
-    text: '10 min',
-    placeholder: 'Type here...',
-    font: 'Arial',
-    pos: [0.5673611111111111, 0.12013888888888889], 
-    draggable: false,
-    letterHeight: 0.05,
-    lineSpacing: 1.0,
-    size: [0.17083333333333334, 0.12361111111111112],  units: undefined, 
-    ori: 0.0,
-    color: 'white', colorSpace: 'rgb',
-    fillColor: undefined, borderColor: undefined,
-    languageStyle: 'LTR',
-    bold: false, italic: false,
-    opacity: undefined,
-    padding: 0.0,
-    alignment: 'center',
-    overflow: 'visible',
-    editable: false,
-    multiline: true,
-    anchor: 'center',
-    depth: -5.0 
+    depth: -1.0 
   });
   
   // Create some handy timers
@@ -248,11 +170,7 @@ function trialRoutineBegin(snapshot) {
     // keep track of which components have finished
     trialComponents = [];
     trialComponents.push(fondo_eleccion);
-    trialComponents.push(caja_1_uber);
-    trialComponents.push(caja_1_metro);
-    trialComponents.push(caja_1_caminata);
-    trialComponents.push(textbox_1_metro);
-    trialComponents.push(textbox_2_metro);
+    trialComponents.push(textbox);
     
     trialComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -263,7 +181,6 @@ function trialRoutineBegin(snapshot) {
 }
 
 
-var frameRemains;
 function trialRoutineEachFrame() {
   return async function () {
     //--- Loop for each frame of Routine 'trial' ---
@@ -287,118 +204,18 @@ function trialRoutineEachFrame() {
     }
     
     
-    // *caja_1_uber* updates
-    if (t >= 0.0 && caja_1_uber.status === PsychoJS.Status.NOT_STARTED) {
+    // *textbox* updates
+    if (t >= 0.0 && textbox.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      caja_1_uber.tStart = t;  // (not accounting for frame time here)
-      caja_1_uber.frameNStart = frameN;  // exact frame index
+      textbox.tStart = t;  // (not accounting for frame time here)
+      textbox.frameNStart = frameN;  // exact frame index
       
-      caja_1_uber.setAutoDraw(true);
+      textbox.setAutoDraw(true);
     }
     
     
-    // if caja_1_uber is active this frame...
-    if (caja_1_uber.status === PsychoJS.Status.STARTED) {
-    }
-    
-    
-    // *caja_1_metro* updates
-    if (t >= 0.0 && caja_1_metro.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      caja_1_metro.tStart = t;  // (not accounting for frame time here)
-      caja_1_metro.frameNStart = frameN;  // exact frame index
-      
-      caja_1_metro.setAutoDraw(true);
-    }
-    
-    
-    // if caja_1_metro is active this frame...
-    if (caja_1_metro.status === PsychoJS.Status.STARTED) {
-    }
-    
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (caja_1_metro.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      caja_1_metro.tStop = t;  // not accounting for scr refresh
-      caja_1_metro.frameNStop = frameN;  // exact frame index
-      // update status
-      caja_1_metro.status = PsychoJS.Status.FINISHED;
-      caja_1_metro.setAutoDraw(false);
-    }
-    
-    
-    // *caja_1_caminata* updates
-    if (t >= 0.0 && caja_1_caminata.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      caja_1_caminata.tStart = t;  // (not accounting for frame time here)
-      caja_1_caminata.frameNStart = frameN;  // exact frame index
-      
-      caja_1_caminata.setAutoDraw(true);
-    }
-    
-    
-    // if caja_1_caminata is active this frame...
-    if (caja_1_caminata.status === PsychoJS.Status.STARTED) {
-    }
-    
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (caja_1_caminata.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      caja_1_caminata.tStop = t;  // not accounting for scr refresh
-      caja_1_caminata.frameNStop = frameN;  // exact frame index
-      // update status
-      caja_1_caminata.status = PsychoJS.Status.FINISHED;
-      caja_1_caminata.setAutoDraw(false);
-    }
-    
-    
-    // *textbox_1_metro* updates
-    if (t >= 0.0 && textbox_1_metro.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      textbox_1_metro.tStart = t;  // (not accounting for frame time here)
-      textbox_1_metro.frameNStart = frameN;  // exact frame index
-      
-      textbox_1_metro.setAutoDraw(true);
-    }
-    
-    
-    // if textbox_1_metro is active this frame...
-    if (textbox_1_metro.status === PsychoJS.Status.STARTED) {
-    }
-    
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (textbox_1_metro.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      textbox_1_metro.tStop = t;  // not accounting for scr refresh
-      textbox_1_metro.frameNStop = frameN;  // exact frame index
-      // update status
-      textbox_1_metro.status = PsychoJS.Status.FINISHED;
-      textbox_1_metro.setAutoDraw(false);
-    }
-    
-    
-    // *textbox_2_metro* updates
-    if (t >= 0.0 && textbox_2_metro.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      textbox_2_metro.tStart = t;  // (not accounting for frame time here)
-      textbox_2_metro.frameNStart = frameN;  // exact frame index
-      
-      textbox_2_metro.setAutoDraw(true);
-    }
-    
-    
-    // if textbox_2_metro is active this frame...
-    if (textbox_2_metro.status === PsychoJS.Status.STARTED) {
-    }
-    
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (textbox_2_metro.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      // keep track of stop time/frame for later
-      textbox_2_metro.tStop = t;  // not accounting for scr refresh
-      textbox_2_metro.frameNStop = frameN;  // exact frame index
-      // update status
-      textbox_2_metro.status = PsychoJS.Status.FINISHED;
-      textbox_2_metro.setAutoDraw(false);
+    // if textbox is active this frame...
+    if (textbox.status === PsychoJS.Status.STARTED) {
     }
     
     // check for quit (typically the Esc key)
