@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 10, 2025, at 00:57
+    on noviembre 10, 2025, at 01:32
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -33,11 +33,10 @@ import sys  # to get file system encoding
 
 from psychopy.hardware import keyboard
 
-# Run 'Before Experiment' code from code_1
+# Run 'Before Experiment' code from code
 block_number = 1
 
-# partimos con la task 1, la idea es ir aumentandolo
-task_number = 1
+
 
 # 1. Definir las listas de coordenadas
 x_coords = [-0.4, 0.08541666667, 0.5645833333]
@@ -76,7 +75,7 @@ deviceManager = hardware.DeviceManager()
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 # store info about the experiment session
 psychopyVersion = '2025.1.1'
-expName = 'v2'  # from the Builder filename that created this script
+expName = 'v3'  # from the Builder filename that created this script
 expVersion = ''
 # a list of functions to run when the experiment ends (starts off blank)
 runAtExit = []
@@ -169,7 +168,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v2_lastrun.py',
+        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v3.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -299,6 +298,12 @@ def setupDevices(expInfo, thisExp, win):
         deviceManager.addDevice(
             deviceClass='keyboard', deviceName='defaultKeyboard', backend='ptb'
         )
+    if deviceManager.getDevice('key_resp') is None:
+        # initialise key_resp
+        key_resp = deviceManager.addDevice(
+            deviceClass='keyboard',
+            deviceName='key_resp',
+        )
     # return True if completed successfully
     return True
 
@@ -406,16 +411,51 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # Start Code - component code to be run after the window creation
     
-    # --- Initialize components for Routine "trial" ---
-    # Run 'Begin Experiment' code from code_1
-    # En cada rutina, rescatamos los atributos y aumentamos el task en 1
+    # --- Initialize components for Routine "wait" ---
+    text = visual.TextStim(win=win, name='text',
+        text='Registrando\nEspere un segundo...',
+        font='Arial',
+        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
+    # Run 'Begin Experiment' code from code
+    # partimos con la task 1, la idea es ir aumentandolo
+    task_number = 0
     
-    # Rescatamos atributos caminata
-    cam_light = df_params.loc[task_number, "cam_light"]
-    cam_travel_time = df_params.loc[task_number, "cam_travel_time"]
-    #cam_cost = df_params.loc[task_number, "cam_cost"]
-    cam_dens = df_params.loc[task_number, "cam_dens"]
-    cam_sec = df_params.loc[task_number, "cam_sec"]
+    # 1. Definir las listas de coordenadas
+    x_coords = [-0.4, 0.08541666667, 0.5645833333]
+    y_coords = [0.3518518519, 0.1296296296, -0.09259259259, -0.3148148148, -0.537037037, -0.7592592593]
+    
+    # 2. Crear la matriz anidada usando una lista de comprensión
+    # La estructura es positions[indice_x][indice_y]
+    positions = [[(x, y) for y in y_coords] for x in x_coords]
+    
+    position_boton_caminata = [-0.4895833333,0.8518518519]
+    position_boton_metro = [-0.01041666667,0.8518518519]
+    position_boton_uber = [0.4583333333,0.8518518519]
+    
+    box_size = [0.08854166667, 0.09259259259]
+    double_box_size = [0.08854166667, 2*0.09259259259]
+    size_boton = [0.2239583333,0.1666666667]
+    
+    # 3. Rescatar los atributos desde los csv #########
+    import pandas as pd
+    
+    # Cargar el archivo CSV
+    file_path = f'Atributos-Bloque-{block_number}.csv'
+    df = pd.read_csv(file_path)
+    
+    # Establecer 'task' como el índice (la "llave" para buscar)
+    df_params = df.set_index('task')
+    
+    
+    
+    
+    
+    
+    
+    # --- Initialize components for Routine "trial" ---
     fondo = visual.ImageStim(
         win=win,
         name='fondo', units='norm', 
@@ -424,7 +464,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
         texRes=128.0, interpolate=True, depth=-1.0)
-    cam_light = visual.TextBox2(
+    cam_light_text = visual.TextBox2(
          win, text=cam_light, placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[0][0]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -437,10 +477,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='cam_light',
+         name='cam_light_text',
          depth=-2, autoLog=True,
     )
-    cam_travel_time = visual.TextBox2(
+    cam_travel_time_text = visual.TextBox2(
          win, text=cam_travel_time, placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[0][1]], draggable=False, units='norm',     letterHeight=0.05,
          size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
@@ -453,10 +493,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='cam_travel_time',
+         name='cam_travel_time_text',
          depth=-3, autoLog=True,
     )
-    cam_cost = visual.TextBox2(
+    cam_cost_text = visual.TextBox2(
          win, text='-', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[0][2]], draggable=False, units='norm',     letterHeight=0.05,
          size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
@@ -469,10 +509,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='cam_cost',
+         name='cam_cost_text',
          depth=-4, autoLog=True,
     )
-    cam_dens = visual.TextBox2(
+    cam_dens_text = visual.TextBox2(
          win, text=cam_dens, placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[0][3]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -485,10 +525,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='cam_dens',
+         name='cam_dens_text',
          depth=-5, autoLog=True,
     )
-    cam_sec = visual.TextBox2(
+    cam_sec_text = visual.TextBox2(
          win, text=cam_sec, placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[0][4]], draggable=False, units='norm',     letterHeight=0.05,
          size=double_box_size, borderWidth=2.0,
@@ -501,26 +541,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='cam_sec',
+         name='cam_sec_text',
          depth=-6, autoLog=True,
     )
-    boton_caminata = visual.ButtonStim(win, 
-        text=None, font='Arvo',
-        pos=position_boton_caminata,
-        letterHeight=0.05,
-        size=size_boton, 
-        ori=0.0
-        ,borderWidth=0.0,
-        fillColor=[0.0000, 0.0000, 0.0000], borderColor=None,
-        color=[0.0000, 0.0000, 0.0000], colorSpace='rgb',
-        opacity=None,
-        bold=True, italic=False,
-        padding=None,
-        anchor='center',
-        name='boton_caminata',
-        depth=-7
-    )
-    boton_caminata.buttonClock = core.Clock()
+    key_resp = keyboard.Keyboard(deviceName='key_resp')
     
     # create some handy timers
     
@@ -553,7 +577,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # set up handler to look after randomisation of conditions etc
     task = data.TrialHandler2(
         name='task',
-        nReps=12.0, 
+        nReps=11.0, 
         method='sequential', 
         extraInfo=expInfo, 
         originPath=-1, 
@@ -584,25 +608,166 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             for paramName in thisTask:
                 globals()[paramName] = thisTask[paramName]
         
+        # --- Prepare to start Routine "wait" ---
+        # create an object to store info about Routine wait
+        wait = data.Routine(
+            name='wait',
+            components=[text],
+        )
+        wait.status = NOT_STARTED
+        continueRoutine = True
+        # update component parameters for each repeat
+        # Run 'Begin Routine' code from code
+        task_number += 1
+        
+        # Rescatamos atributos caminata
+        cam_light = df_params.loc[task_number, "cam_light"]
+        cam_travel_time = df_params.loc[task_number, "cam_travel_time"]
+        #cam_cost = df_params.loc[task_number, "cam_cost"]
+        cam_dens = df_params.loc[task_number, "cam_dens"]
+        cam_sec = df_params.loc[task_number, "cam_sec"]
+        # store start times for wait
+        wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        wait.tStart = globalClock.getTime(format='float')
+        wait.status = STARTED
+        thisExp.addData('wait.started', wait.tStart)
+        wait.maxDuration = None
+        # keep track of which components have finished
+        waitComponents = wait.components
+        for thisComponent in wait.components:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        frameN = -1
+        
+        # --- Run Routine "wait" ---
+        wait.forceEnded = routineForceEnded = not continueRoutine
+        while continueRoutine and routineTimer.getTime() < 0.2:
+            # if trial has changed, end Routine now
+            if hasattr(thisTask, 'status') and thisTask.status == STOPPING:
+                continueRoutine = False
+            # get current time
+            t = routineTimer.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *text* updates
+            
+            # if text is starting this frame...
+            if text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                text.frameNStart = frameN  # exact frame index
+                text.tStart = t  # local t and not account for scr refresh
+                text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'text.started')
+                # update status
+                text.status = STARTED
+                text.setAutoDraw(True)
+            
+            # if text is active this frame...
+            if text.status == STARTED:
+                # update params
+                pass
+            
+            # if text is stopping this frame...
+            if text.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > text.tStartRefresh + 0.2-frameTolerance:
+                    # keep track of stop time/frame for later
+                    text.tStop = t  # not accounting for scr refresh
+                    text.tStopRefresh = tThisFlipGlobal  # on global time
+                    text.frameNStop = frameN  # exact frame index
+                    # add timestamp to datafile
+                    thisExp.timestampOnFlip(win, 'text.stopped')
+                    # update status
+                    text.status = FINISHED
+                    text.setAutoDraw(False)
+            
+            # check for quit (typically the Esc key)
+            if defaultKeyboard.getKeys(keyList=["escape"]):
+                thisExp.status = FINISHED
+            if thisExp.status == FINISHED or endExpNow:
+                endExperiment(thisExp, win=win)
+                return
+            # pause experiment here if requested
+            if thisExp.status == PAUSED:
+                pauseExperiment(
+                    thisExp=thisExp, 
+                    win=win, 
+                    timers=[routineTimer, globalClock], 
+                    currentRoutine=wait,
+                )
+                # skip the frame we paused on
+                continue
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                wait.forceEnded = routineForceEnded = True
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in wait.components:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # --- Ending Routine "wait" ---
+        for thisComponent in wait.components:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # store stop times for wait
+        wait.tStop = globalClock.getTime(format='float')
+        wait.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('wait.stopped', wait.tStop)
+        # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
+        if wait.maxDurationReached:
+            routineTimer.addTime(-wait.maxDuration)
+        elif wait.forceEnded:
+            routineTimer.reset()
+        else:
+            routineTimer.addTime(-0.200000)
+        
         # --- Prepare to start Routine "trial" ---
         # create an object to store info about Routine trial
         trial = data.Routine(
             name='trial',
-            components=[fondo, cam_light, cam_travel_time, cam_cost, cam_dens, cam_sec, boton_caminata],
+            components=[fondo, cam_light_text, cam_travel_time_text, cam_cost_text, cam_dens_text, cam_sec_text, key_resp],
         )
         trial.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from code_1
+        # En cada rutina, rescatamos los atributos y aumentamos el task en 1
         
+        # Rescatamos atributos caminata
+        #cam_light = df_params.loc[task_number, "cam_light"]
+        #cam_travel_time = df_params.loc[task_number, "cam_travel_time"]
+        #cam_cost = df_params.loc[task_number, "cam_cost"]
+        #cam_dens = df_params.loc[task_number, "cam_dens"]
+        #cam_sec = df_params.loc[task_number, "cam_sec"]
         
-        cam_light.reset()
-        cam_travel_time.reset()
-        cam_cost.reset()
-        cam_dens.reset()
-        cam_sec.reset()
-        # reset boton_caminata to account for continued clicks & clear times on/off
-        boton_caminata.reset()
+        cam_light_text.reset()
+        cam_travel_time_text.reset()
+        cam_cost_text.reset()
+        cam_dens_text.reset()
+        cam_sec_text.reset()
+        # create starting attributes for key_resp
+        key_resp.keys = []
+        key_resp.rt = []
+        _key_resp_allKeys = []
         # store start times for trial
         trial.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         trial.tStart = globalClock.getTime(format='float')
@@ -656,156 +821,133 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *cam_light* updates
+            # *cam_light_text* updates
             
-            # if cam_light is starting this frame...
-            if cam_light.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if cam_light_text is starting this frame...
+            if cam_light_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_light.frameNStart = frameN  # exact frame index
-                cam_light.tStart = t  # local t and not account for scr refresh
-                cam_light.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_light, 'tStartRefresh')  # time at next scr refresh
+                cam_light_text.frameNStart = frameN  # exact frame index
+                cam_light_text.tStart = t  # local t and not account for scr refresh
+                cam_light_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_light_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_light.started')
+                thisExp.timestampOnFlip(win, 'cam_light_text.started')
                 # update status
-                cam_light.status = STARTED
-                cam_light.setAutoDraw(True)
+                cam_light_text.status = STARTED
+                cam_light_text.setAutoDraw(True)
             
-            # if cam_light is active this frame...
-            if cam_light.status == STARTED:
+            # if cam_light_text is active this frame...
+            if cam_light_text.status == STARTED:
                 # update params
                 pass
             
-            # *cam_travel_time* updates
+            # *cam_travel_time_text* updates
             
-            # if cam_travel_time is starting this frame...
-            if cam_travel_time.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if cam_travel_time_text is starting this frame...
+            if cam_travel_time_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_travel_time.frameNStart = frameN  # exact frame index
-                cam_travel_time.tStart = t  # local t and not account for scr refresh
-                cam_travel_time.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_travel_time, 'tStartRefresh')  # time at next scr refresh
+                cam_travel_time_text.frameNStart = frameN  # exact frame index
+                cam_travel_time_text.tStart = t  # local t and not account for scr refresh
+                cam_travel_time_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_travel_time_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_travel_time.started')
+                thisExp.timestampOnFlip(win, 'cam_travel_time_text.started')
                 # update status
-                cam_travel_time.status = STARTED
-                cam_travel_time.setAutoDraw(True)
+                cam_travel_time_text.status = STARTED
+                cam_travel_time_text.setAutoDraw(True)
             
-            # if cam_travel_time is active this frame...
-            if cam_travel_time.status == STARTED:
+            # if cam_travel_time_text is active this frame...
+            if cam_travel_time_text.status == STARTED:
                 # update params
                 pass
             
-            # *cam_cost* updates
+            # *cam_cost_text* updates
             
-            # if cam_cost is starting this frame...
-            if cam_cost.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if cam_cost_text is starting this frame...
+            if cam_cost_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_cost.frameNStart = frameN  # exact frame index
-                cam_cost.tStart = t  # local t and not account for scr refresh
-                cam_cost.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_cost, 'tStartRefresh')  # time at next scr refresh
+                cam_cost_text.frameNStart = frameN  # exact frame index
+                cam_cost_text.tStart = t  # local t and not account for scr refresh
+                cam_cost_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_cost_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_cost.started')
+                thisExp.timestampOnFlip(win, 'cam_cost_text.started')
                 # update status
-                cam_cost.status = STARTED
-                cam_cost.setAutoDraw(True)
+                cam_cost_text.status = STARTED
+                cam_cost_text.setAutoDraw(True)
             
-            # if cam_cost is active this frame...
-            if cam_cost.status == STARTED:
+            # if cam_cost_text is active this frame...
+            if cam_cost_text.status == STARTED:
                 # update params
                 pass
             
-            # *cam_dens* updates
+            # *cam_dens_text* updates
             
-            # if cam_dens is starting this frame...
-            if cam_dens.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if cam_dens_text is starting this frame...
+            if cam_dens_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_dens.frameNStart = frameN  # exact frame index
-                cam_dens.tStart = t  # local t and not account for scr refresh
-                cam_dens.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_dens, 'tStartRefresh')  # time at next scr refresh
+                cam_dens_text.frameNStart = frameN  # exact frame index
+                cam_dens_text.tStart = t  # local t and not account for scr refresh
+                cam_dens_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_dens_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_dens.started')
+                thisExp.timestampOnFlip(win, 'cam_dens_text.started')
                 # update status
-                cam_dens.status = STARTED
-                cam_dens.setAutoDraw(True)
+                cam_dens_text.status = STARTED
+                cam_dens_text.setAutoDraw(True)
             
-            # if cam_dens is active this frame...
-            if cam_dens.status == STARTED:
+            # if cam_dens_text is active this frame...
+            if cam_dens_text.status == STARTED:
                 # update params
                 pass
             
-            # *cam_sec* updates
+            # *cam_sec_text* updates
             
-            # if cam_sec is starting this frame...
-            if cam_sec.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if cam_sec_text is starting this frame...
+            if cam_sec_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_sec.frameNStart = frameN  # exact frame index
-                cam_sec.tStart = t  # local t and not account for scr refresh
-                cam_sec.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_sec, 'tStartRefresh')  # time at next scr refresh
+                cam_sec_text.frameNStart = frameN  # exact frame index
+                cam_sec_text.tStart = t  # local t and not account for scr refresh
+                cam_sec_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_sec_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_sec.started')
+                thisExp.timestampOnFlip(win, 'cam_sec_text.started')
                 # update status
-                cam_sec.status = STARTED
-                cam_sec.setAutoDraw(True)
+                cam_sec_text.status = STARTED
+                cam_sec_text.setAutoDraw(True)
             
-            # if cam_sec is active this frame...
-            if cam_sec.status == STARTED:
+            # if cam_sec_text is active this frame...
+            if cam_sec_text.status == STARTED:
                 # update params
                 pass
-            # *boton_caminata* updates
             
-            # if boton_caminata is starting this frame...
-            if boton_caminata.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # *key_resp* updates
+            waitOnFlip = False
+            
+            # if key_resp is starting this frame...
+            if key_resp.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                boton_caminata.frameNStart = frameN  # exact frame index
-                boton_caminata.tStart = t  # local t and not account for scr refresh
-                boton_caminata.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(boton_caminata, 'tStartRefresh')  # time at next scr refresh
+                key_resp.frameNStart = frameN  # exact frame index
+                key_resp.tStart = t  # local t and not account for scr refresh
+                key_resp.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(key_resp, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'boton_caminata.started')
+                thisExp.timestampOnFlip(win, 'key_resp.started')
                 # update status
-                boton_caminata.status = STARTED
-                win.callOnFlip(boton_caminata.buttonClock.reset)
-                boton_caminata.setAutoDraw(True)
-            
-            # if boton_caminata is active this frame...
-            if boton_caminata.status == STARTED:
-                # update params
-                pass
-                # check whether boton_caminata has been pressed
-                if boton_caminata.isClicked:
-                    if not boton_caminata.wasClicked:
-                        # if this is a new click, store time of first click and clicked until
-                        boton_caminata.timesOn.append(boton_caminata.buttonClock.getTime())
-                        boton_caminata.timesOff.append(boton_caminata.buttonClock.getTime())
-                    elif len(boton_caminata.timesOff):
-                        # if click is continuing from last frame, update time of clicked until
-                        boton_caminata.timesOff[-1] = boton_caminata.buttonClock.getTime()
-                    if not boton_caminata.wasClicked:
-                        # end routine when boton_caminata is clicked
-                        continueRoutine = False
-                    if not boton_caminata.wasClicked:
-                        # run callback code when boton_caminata is clicked
-                        pass
-            # take note of whether boton_caminata was clicked, so that next frame we know if clicks are new
-            boton_caminata.wasClicked = boton_caminata.isClicked and boton_caminata.status == STARTED
-            
-            # if boton_caminata is stopping this frame...
-            if boton_caminata.status == STARTED:
-                # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > boton_caminata.tStartRefresh + 0-frameTolerance:
-                    # keep track of stop time/frame for later
-                    boton_caminata.tStop = t  # not accounting for scr refresh
-                    boton_caminata.tStopRefresh = tThisFlipGlobal  # on global time
-                    boton_caminata.frameNStop = frameN  # exact frame index
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'boton_caminata.stopped')
-                    # update status
-                    boton_caminata.status = FINISHED
-                    boton_caminata.setAutoDraw(False)
+                key_resp.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(key_resp.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(key_resp.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if key_resp.status == STARTED and not waitOnFlip:
+                theseKeys = key_resp.getKeys(keyList=['1','2','3'], ignoreKeys=["escape"], waitRelease=False)
+                _key_resp_allKeys.extend(theseKeys)
+                if len(_key_resp_allKeys):
+                    key_resp.keys = _key_resp_allKeys[-1].name  # just the last key pressed
+                    key_resp.rt = _key_resp_allKeys[-1].rt
+                    key_resp.duration = _key_resp_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -846,13 +988,27 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         trial.tStop = globalClock.getTime(format='float')
         trial.tStopRefresh = tThisFlipGlobal
         thisExp.addData('trial.stopped', trial.tStop)
-        task.addData('boton_caminata.numClicks', boton_caminata.numClicks)
-        if boton_caminata.numClicks:
-           task.addData('boton_caminata.timesOn', boton_caminata.timesOn)
-           task.addData('boton_caminata.timesOff', boton_caminata.timesOff)
-        else:
-           task.addData('boton_caminata.timesOn', "")
-           task.addData('boton_caminata.timesOff', "")
+        # Run 'End Routine' code from code_1
+        
+        
+        
+        task_number = task_number + 1
+        
+        # En cada rutina, rescatamos los atributos y aumentamos el task en 1
+        
+        # Rescatamos atributos caminata
+        cam_light = df_params.loc[task_number, "cam_light"]
+        cam_travel_time = df_params.loc[task_number, "cam_travel_time"]
+        #cam_cost = df_params.loc[task_number, "cam_cost"]
+        cam_dens = df_params.loc[task_number, "cam_dens"]
+        cam_sec = df_params.loc[task_number, "cam_sec"]
+        # check responses
+        if key_resp.keys in ['', [], None]:  # No response was made
+            key_resp.keys = None
+        task.addData('key_resp.keys',key_resp.keys)
+        if key_resp.keys != None:  # we had a response
+            task.addData('key_resp.rt', key_resp.rt)
+            task.addData('key_resp.duration', key_resp.duration)
         # the Routine "trial" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         # mark thisTask as finished
@@ -870,7 +1026,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             task.status = STARTED
         thisExp.nextEntry()
         
-    # completed 12.0 repeats of 'task'
+    # completed 11.0 repeats of 'task'
     task.status = FINISHED
     
     if thisSession is not None:
