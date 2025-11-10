@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 09, 2025, at 23:52
+    on noviembre 10, 2025, at 00:46
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -34,6 +34,11 @@ import sys  # to get file system encoding
 from psychopy.hardware import keyboard
 
 # Run 'Before Experiment' code from code_1
+block_number = 1
+
+# partimos con la task 1, la idea es ir aumentandolo
+task_number = 1
+
 # 1. Definir las listas de coordenadas
 x_coords = [-0.4, 0.08541666667, 0.5645833333]
 y_coords = [0.3518518519, 0.1296296296, -0.09259259259, -0.3148148148, -0.537037037, -0.7592592593]
@@ -41,6 +46,26 @@ y_coords = [0.3518518519, 0.1296296296, -0.09259259259, -0.3148148148, -0.537037
 # 2. Crear la matriz anidada usando una lista de comprensión
 # La estructura es positions[indice_x][indice_y]
 positions = [[(x, y) for y in y_coords] for x in x_coords]
+
+
+box_size = [0.08854166667, 0.09259259259]
+double_box_size = [0.08854166667, 2*0.09259259259]
+
+
+# 3. Rescatar los atributos desde los csv #########
+import pandas as pd
+
+# Cargar el archivo CSV
+file_path = f'Atributos-Bloque-{block_number}.csv'
+df = pd.read_csv(file_path)
+
+# Establecer 'task' como el índice (la "llave" para buscar)
+df_params = df.set_index('task')
+
+
+
+
+
 # --- Setup global variables (available in all functions) ---
 # create a device manager to handle hardware (keyboards, mice, mirophones, speakers, etc.)
 deviceManager = hardware.DeviceManager()
@@ -379,6 +404,15 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # Start Code - component code to be run after the window creation
     
     # --- Initialize components for Routine "trial" ---
+    # Run 'Begin Experiment' code from code_1
+    # En cada rutina, rescatamos los atributos y aumentamos el task en 1
+    
+    # Rescatamos atributos caminata
+    cam_light = df_params.loc[task_number, "cam_light"]
+    cam_travel_time = df_params.loc[task_number, "cam_travel_time"]
+    #cam_cost = df_params.loc[task_number, "cam_cost"]
+    cam_dens = df_params.loc[task_number, "cam_dens"]
+    cam_sec = df_params.loc[task_number, "cam_sec"]
     fondo = visual.ImageStim(
         win=win,
         name='fondo', units='norm', 
@@ -386,11 +420,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         ori=0.0, pos=(0, 0), draggable=False, size=(2, 2),
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
-        texRes=128.0, interpolate=True, depth=0.0)
-    textbox = visual.TextBox2(
-         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[1][2]], draggable=False, units='norm',     letterHeight=0.05,
-         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+        texRes=128.0, interpolate=True, depth=-1.0)
+    cam_light = visual.TextBox2(
+         win, text=cam_light, placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][0]], draggable=False, units='norm',     letterHeight=0.05,
+         size=box_size, borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
          bold=False, italic=False,
@@ -400,12 +434,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='textbox',
-         depth=-1, autoLog=True,
+         name='cam_light',
+         depth=-2, autoLog=True,
     )
-    textbox_2 = visual.TextBox2(
-         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[-0.4 ,0.3518518519], draggable=False, units='norm',     letterHeight=0.05,
+    cam_travel_time = visual.TextBox2(
+         win, text=cam_travel_time, placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][1]], draggable=False, units='norm',     letterHeight=0.05,
          size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
@@ -416,12 +450,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='textbox_2',
+         name='cam_travel_time',
          depth=-3, autoLog=True,
     )
-    textbox_3 = visual.TextBox2(
-         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[1][3]], draggable=False, units='norm',     letterHeight=0.05,
+    cam_cost = visual.TextBox2(
+         win, text='-', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][2]], draggable=False, units='norm',     letterHeight=0.05,
          size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
@@ -432,13 +466,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='textbox_3',
+         name='cam_cost',
          depth=-4, autoLog=True,
     )
-    textbox_4 = visual.TextBox2(
-         win, text='3000\n CLP', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[2][1]], draggable=False, units='norm',     letterHeight=0.05,
-         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+    cam_dens = visual.TextBox2(
+         win, text=cam_dens, placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][3]], draggable=False, units='norm',     letterHeight=0.05,
+         size=box_size, borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
          bold=False, italic=False,
@@ -448,8 +482,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='textbox_4',
+         name='cam_dens',
          depth=-5, autoLog=True,
+    )
+    cam_sec = visual.TextBox2(
+         win, text=cam_sec, placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][4]], draggable=False, units='norm',     letterHeight=0.05,
+         size=double_box_size, borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='cam_sec',
+         depth=-6, autoLog=True,
     )
     
     # create some handy timers
@@ -484,15 +534,19 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine trial
     trial = data.Routine(
         name='trial',
-        components=[fondo, textbox, textbox_2, textbox_3, textbox_4],
+        components=[fondo, cam_light, cam_travel_time, cam_cost, cam_dens, cam_sec],
     )
     trial.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    textbox.reset()
-    textbox_2.reset()
-    textbox_3.reset()
-    textbox_4.reset()
+    # Run 'Begin Routine' code from code_1
+    
+    
+    cam_light.reset()
+    cam_travel_time.reset()
+    cam_cost.reset()
+    cam_dens.reset()
+    cam_sec.reset()
     # store start times for trial
     trial.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     trial.tStart = globalClock.getTime(format='float')
@@ -543,83 +597,103 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *textbox* updates
+        # *cam_light* updates
         
-        # if textbox is starting this frame...
-        if textbox.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if cam_light is starting this frame...
+        if cam_light.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            textbox.frameNStart = frameN  # exact frame index
-            textbox.tStart = t  # local t and not account for scr refresh
-            textbox.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(textbox, 'tStartRefresh')  # time at next scr refresh
+            cam_light.frameNStart = frameN  # exact frame index
+            cam_light.tStart = t  # local t and not account for scr refresh
+            cam_light.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(cam_light, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'textbox.started')
+            thisExp.timestampOnFlip(win, 'cam_light.started')
             # update status
-            textbox.status = STARTED
-            textbox.setAutoDraw(True)
+            cam_light.status = STARTED
+            cam_light.setAutoDraw(True)
         
-        # if textbox is active this frame...
-        if textbox.status == STARTED:
+        # if cam_light is active this frame...
+        if cam_light.status == STARTED:
             # update params
             pass
         
-        # *textbox_2* updates
+        # *cam_travel_time* updates
         
-        # if textbox_2 is starting this frame...
-        if textbox_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if cam_travel_time is starting this frame...
+        if cam_travel_time.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            textbox_2.frameNStart = frameN  # exact frame index
-            textbox_2.tStart = t  # local t and not account for scr refresh
-            textbox_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(textbox_2, 'tStartRefresh')  # time at next scr refresh
+            cam_travel_time.frameNStart = frameN  # exact frame index
+            cam_travel_time.tStart = t  # local t and not account for scr refresh
+            cam_travel_time.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(cam_travel_time, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'textbox_2.started')
+            thisExp.timestampOnFlip(win, 'cam_travel_time.started')
             # update status
-            textbox_2.status = STARTED
-            textbox_2.setAutoDraw(True)
+            cam_travel_time.status = STARTED
+            cam_travel_time.setAutoDraw(True)
         
-        # if textbox_2 is active this frame...
-        if textbox_2.status == STARTED:
+        # if cam_travel_time is active this frame...
+        if cam_travel_time.status == STARTED:
             # update params
             pass
         
-        # *textbox_3* updates
+        # *cam_cost* updates
         
-        # if textbox_3 is starting this frame...
-        if textbox_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if cam_cost is starting this frame...
+        if cam_cost.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            textbox_3.frameNStart = frameN  # exact frame index
-            textbox_3.tStart = t  # local t and not account for scr refresh
-            textbox_3.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(textbox_3, 'tStartRefresh')  # time at next scr refresh
+            cam_cost.frameNStart = frameN  # exact frame index
+            cam_cost.tStart = t  # local t and not account for scr refresh
+            cam_cost.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(cam_cost, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'textbox_3.started')
+            thisExp.timestampOnFlip(win, 'cam_cost.started')
             # update status
-            textbox_3.status = STARTED
-            textbox_3.setAutoDraw(True)
+            cam_cost.status = STARTED
+            cam_cost.setAutoDraw(True)
         
-        # if textbox_3 is active this frame...
-        if textbox_3.status == STARTED:
+        # if cam_cost is active this frame...
+        if cam_cost.status == STARTED:
             # update params
             pass
         
-        # *textbox_4* updates
+        # *cam_dens* updates
         
-        # if textbox_4 is starting this frame...
-        if textbox_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if cam_dens is starting this frame...
+        if cam_dens.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            textbox_4.frameNStart = frameN  # exact frame index
-            textbox_4.tStart = t  # local t and not account for scr refresh
-            textbox_4.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(textbox_4, 'tStartRefresh')  # time at next scr refresh
+            cam_dens.frameNStart = frameN  # exact frame index
+            cam_dens.tStart = t  # local t and not account for scr refresh
+            cam_dens.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(cam_dens, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'textbox_4.started')
+            thisExp.timestampOnFlip(win, 'cam_dens.started')
             # update status
-            textbox_4.status = STARTED
-            textbox_4.setAutoDraw(True)
+            cam_dens.status = STARTED
+            cam_dens.setAutoDraw(True)
         
-        # if textbox_4 is active this frame...
-        if textbox_4.status == STARTED:
+        # if cam_dens is active this frame...
+        if cam_dens.status == STARTED:
+            # update params
+            pass
+        
+        # *cam_sec* updates
+        
+        # if cam_sec is starting this frame...
+        if cam_sec.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            cam_sec.frameNStart = frameN  # exact frame index
+            cam_sec.tStart = t  # local t and not account for scr refresh
+            cam_sec.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(cam_sec, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'cam_sec.started')
+            # update status
+            cam_sec.status = STARTED
+            cam_sec.setAutoDraw(True)
+        
+        # if cam_sec is active this frame...
+        if cam_sec.status == STARTED:
             # update params
             pass
         
