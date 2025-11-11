@@ -1,8 +1,13 @@
 ﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+<<<<<<< Updated upstream
 This experiment was created using PsychoPy3 Experiment Builder (v2025.2.1),
     on noviembre 10, 2025, at 15:37
+=======
+This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
+    on noviembre 10, 2025, at 23:09
+>>>>>>> Stashed changes
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -16,6 +21,10 @@ from psychopy import locale_setup
 from psychopy import prefs
 from psychopy import plugins
 plugins.activatePlugins()
+<<<<<<< Updated upstream
+=======
+prefs.hardware['audioLib'] = 'ptb'
+>>>>>>> Stashed changes
 from psychopy import sound, gui, visual, core, data, event, logging, clock, colors, layout, hardware
 from psychopy.tools import environmenttools
 from psychopy.constants import (
@@ -73,7 +82,11 @@ deviceManager = hardware.DeviceManager()
 # ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 # store info about the experiment session
+<<<<<<< Updated upstream
 psychopyVersion = '2025.2.1'
+=======
+psychopyVersion = '2025.1.1'
+>>>>>>> Stashed changes
 expName = 'v4-funcionando'  # from the Builder filename that created this script
 expVersion = ''
 # a list of functions to run when the experiment ends (starts off blank)
@@ -167,7 +180,11 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
+<<<<<<< Updated upstream
         originPath='C:\\Users\\CI6316 - Grupo 1\\Desktop\\2025-CI6316\\Experiment\\v4-funcionando_lastrun.py',
+=======
+        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v4-funcionando_lastrun.py',
+>>>>>>> Stashed changes
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -297,6 +314,15 @@ def setupDevices(expInfo, thisExp, win):
         deviceManager.addDevice(
             deviceClass='keyboard', deviceName='defaultKeyboard', backend='ptb'
         )
+<<<<<<< Updated upstream
+=======
+    if deviceManager.getDevice('respuesta') is None:
+        # initialise respuesta
+        respuesta = deviceManager.addDevice(
+            deviceClass='keyboard',
+            deviceName='respuesta',
+        )
+>>>>>>> Stashed changes
     # return True if completed successfully
     return True
 
@@ -377,11 +403,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     """
     # mark experiment as started
     thisExp.status = STARTED
+<<<<<<< Updated upstream
     # update experiment info
     expInfo['date'] = data.getDateStr()
     expInfo['expName'] = expName
     expInfo['expVersion'] = expVersion
     expInfo['psychopyVersion'] = psychopyVersion
+=======
+>>>>>>> Stashed changes
     # make sure window is set to foreground to prevent losing focus
     win.winHandle.activate()
     # make sure variables created by exec are available globally
@@ -457,7 +486,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     fondo = visual.ImageStim(
         win=win,
         name='fondo', units='norm', 
+<<<<<<< Updated upstream
         image='fondo_eleccion.png', mask=None, anchor='center',
+=======
+        image='fondo_actualizado.png', mask=None, anchor='center',
+>>>>>>> Stashed changes
         ori=0.0, pos=(0, 0), draggable=False, size=(2, 2),
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
@@ -718,7 +751,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          name='uber_record_text',
          depth=-17, autoLog=True,
     )
+<<<<<<< Updated upstream
     respuesta = keyboard.Keyboard(deviceName='defaultKeyboard')
+=======
+    respuesta = keyboard.Keyboard(deviceName='respuesta')
+>>>>>>> Stashed changes
     
     # create some handy timers
     
@@ -740,8 +777,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if ioServer is not None:
         ioServer.syncClock(globalClock)
     logging.setDefaultClock(globalClock)
+<<<<<<< Updated upstream
     if eyetracker is not None:
         eyetracker.enableEventReporting()
+=======
+>>>>>>> Stashed changes
     # routine timer to track time remaining of each (possibly non-slip) routine
     routineTimer = core.Clock()
     win.flip()  # flip window to reset last flip timer
@@ -759,7 +799,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         originPath=-1, 
         trialList=data.importConditions('Atributos-Bloque-1.csv'), 
         seed=None, 
+<<<<<<< Updated upstream
         isTrials=True, 
+=======
+>>>>>>> Stashed changes
     )
     thisExp.addLoop(task)  # add the loop to the experiment
     thisTask = task.trialList[0]  # so we can initialise stimuli with some values
@@ -815,7 +858,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         frameN = -1
         
         # --- Run Routine "wait" ---
+<<<<<<< Updated upstream
         thisExp.currentRoutine = wait
+=======
+>>>>>>> Stashed changes
         wait.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine and routineTimer.getTime() < 0.2:
             # if trial has changed, end Routine now
@@ -879,6 +925,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # skip the frame we paused on
                 continue
             
+<<<<<<< Updated upstream
             # has a Component requested the Routine to end?
             if not continueRoutine:
                 wait.forceEnded = routineForceEnded = True
@@ -887,6 +934,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 break
             # has every Component finished?
             continueRoutine = False
+=======
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                wait.forceEnded = routineForceEnded = True
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+>>>>>>> Stashed changes
             for thisComponent in wait.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
@@ -987,7 +1041,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         frameN = -1
         
         # --- Run Routine "trial" ---
+<<<<<<< Updated upstream
         thisExp.currentRoutine = trial
+=======
+>>>>>>> Stashed changes
         trial.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # if trial has changed, end Routine now
@@ -1385,6 +1442,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # skip the frame we paused on
                 continue
             
+<<<<<<< Updated upstream
             # has a Component requested the Routine to end?
             if not continueRoutine:
                 trial.forceEnded = routineForceEnded = True
@@ -1393,6 +1451,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 break
             # has every Component finished?
             continueRoutine = False
+=======
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                trial.forceEnded = routineForceEnded = True
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+>>>>>>> Stashed changes
             for thisComponent in trial.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True

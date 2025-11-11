@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 10, 2025, at 19:21
+    on noviembre 10, 2025, at 23:38
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -101,7 +101,7 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
 _fullScr = True
-_winSize = [1920, 1080]
+_winSize = [1493, 933]
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -170,7 +170,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\CI6316 - Grupo 1\\Desktop\\2025-CI6316\\Experiment\\v5-eye_lastrun.py',
+        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v5-eye_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -291,11 +291,12 @@ def setupDevices(expInfo, thisExp, win):
     # --- Setup input devices ---
     ioConfig = {}
     # setup eyetracking
-    ioConfig['eyetracker.hw.tobii.EyeTracker'] = {
+    ioConfig['eyetracker.hw.mouse.EyeTracker'] = {
         'name': 'tracker',
-        'runtime_settings': {
-            'sampling_rate': '60',
-            'track_eyes': 'BINOCULAR',
+        'controls': {
+            'move': [],
+            'blink':('MIDDLE_BUTTON',),
+            'saccade_threshold': 0.5,
         },
     }
     
@@ -454,7 +455,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     position_boton_metro = [-0.01041666667,0.8518518519]
     position_boton_uber = [0.4583333333,0.8518518519]
     
-    box_size = [0.08854166667, 0.09259259259]
+    position_time_of_day = [0.4791666667, 0.912962963]
+    
+    box_size = [0.09635416667, 0.09259259259]
+    small_box_size = [0.1822916667, 0.05555555556]
     double_box_size = [0.08854166667, 2*0.09259259259]
     size_boton = [0.2239583333,0.1666666667]
     
@@ -482,15 +486,15 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     fondo = visual.ImageStim(
         win=win,
         name='fondo', units='norm', 
-        image='fondo_eleccion.png', mask=None, anchor='center',
+        image='fondo_actualizado.png', mask=None, anchor='center',
         ori=0.0, pos=(0, 0), draggable=False, size=(2, 2),
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
         texRes=128.0, interpolate=True, depth=-1.0)
-    cam_inicio_viaje = visual.TextBox2(
+    hora_inicio_viaje_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[0][0]], draggable=False, units='norm',     letterHeight=0.05,
-         size=box_size, borderWidth=2.0,
+         ori=0.0, pos=position_time_of_day, draggable=False, units='norm',     letterHeight=0.05,
+         size=small_box_size, borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
          bold=False, italic=False,
@@ -500,8 +504,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='cam_inicio_viaje',
+         name='hora_inicio_viaje_text',
          depth=-2, autoLog=True,
+    )
+    cam_cost_text = visual.TextBox2(
+         win, text='-', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][0]], draggable=False, units='norm',     letterHeight=0.05,
+         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='cam_cost_text',
+         depth=-3, autoLog=True,
     )
     cam_travel_time_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
@@ -517,27 +537,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
          name='cam_travel_time_text',
-         depth=-3, autoLog=True,
-    )
-    cam_cost_text = visual.TextBox2(
-         win, text='-', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[0][2]], draggable=False, units='norm',     letterHeight=0.05,
-         size=[0.08854166667 ,0.09259259259], borderWidth=2.0,
-         color='black', colorSpace='rgb',
-         opacity=None,
-         bold=False, italic=False,
-         lineSpacing=1.0, speechPoint=None,
-         padding=0.0, alignment='center',
-         anchor='center', overflow='visible',
-         fillColor=None, borderColor=None,
-         flipHoriz=False, flipVert=False, languageStyle='LTR',
-         editable=False,
-         name='cam_cost_text',
          depth=-4, autoLog=True,
     )
     cam_dens_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[0][3]], draggable=False, units='norm',     letterHeight=0.05,
+         ori=0.0, pos=[positions[0][2]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
@@ -550,6 +554,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          editable=False,
          name='cam_dens_text',
          depth=-5, autoLog=True,
+    )
+    cam_light_text = visual.TextBox2(
+         win, text='', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[0][3]], draggable=False, units='norm',     letterHeight=0.05,
+         size=double_box_size, borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='cam_light_text',
+         depth=-6, autoLog=True,
     )
     cam_sec_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
@@ -565,9 +585,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
          name='cam_sec_text',
-         depth=-6, autoLog=True,
+         depth=-7, autoLog=True,
     )
-    metro_inicio_viaje_text = visual.TextBox2(
+    metro_cost_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[1][0]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -580,8 +600,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='metro_inicio_viaje_text',
-         depth=-7, autoLog=True,
+         name='metro_cost_text',
+         depth=-8, autoLog=True,
     )
     metro_travel_time_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
@@ -597,27 +617,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
          name='metro_travel_time_text',
-         depth=-8, autoLog=True,
-    )
-    metro_cost_text = visual.TextBox2(
-         win, text='', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[1][2]], draggable=False, units='norm',     letterHeight=0.05,
-         size=box_size, borderWidth=2.0,
-         color='black', colorSpace='rgb',
-         opacity=None,
-         bold=False, italic=False,
-         lineSpacing=1.0, speechPoint=None,
-         padding=0.0, alignment='center',
-         anchor='center', overflow='visible',
-         fillColor=None, borderColor=None,
-         flipHoriz=False, flipVert=False, languageStyle='LTR',
-         editable=False,
-         name='metro_cost_text',
          depth=-9, autoLog=True,
     )
     metro_dens_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=[positions[1][3]], draggable=False, units='norm',     letterHeight=0.05,
+         ori=0.0, pos=[positions[1][2]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
          color='black', colorSpace='rgb',
          opacity=None,
@@ -631,7 +635,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          name='metro_dens_text',
          depth=-10, autoLog=True,
     )
-    metro_users_text = visual.TextBox2(
+    metro_inf_text = visual.TextBox2(
+         win, text='', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[1][3]], draggable=False, units='norm',     letterHeight=0.05,
+         size=box_size, borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='metro_inf_text',
+         depth=-11, autoLog=True,
+    )
+    metro_guards_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[1][4]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -644,10 +664,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='metro_users_text',
-         depth=-11, autoLog=True,
+         name='metro_guards_text',
+         depth=-12, autoLog=True,
     )
-    uber_inicio_viaje_text = visual.TextBox2(
+    metro_users_text = visual.TextBox2(
+         win, text='', placeholder='Type here...', font='Arial',
+         ori=0.0, pos=[positions[1][5]], draggable=False, units='norm',     letterHeight=0.05,
+         size=box_size, borderWidth=2.0,
+         color='black', colorSpace='rgb',
+         opacity=None,
+         bold=False, italic=False,
+         lineSpacing=1.0, speechPoint=None,
+         padding=0.0, alignment='center',
+         anchor='center', overflow='visible',
+         fillColor=None, borderColor=None,
+         flipHoriz=False, flipVert=False, languageStyle='LTR',
+         editable=False,
+         name='metro_users_text',
+         depth=-13, autoLog=True,
+    )
+    uber_cost_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[2][0]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -660,8 +696,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='uber_inicio_viaje_text',
-         depth=-12, autoLog=True,
+         name='uber_cost_text',
+         depth=-14, autoLog=True,
     )
     uber_travel_time_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
@@ -677,9 +713,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
          name='uber_travel_time_text',
-         depth=-13, autoLog=True,
+         depth=-15, autoLog=True,
     )
-    uber_cost_text = visual.TextBox2(
+    uber_stars_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[2][2]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -692,10 +728,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='uber_cost_text',
-         depth=-14, autoLog=True,
+         name='uber_stars_text',
+         depth=-16, autoLog=True,
     )
-    uber_stars_text = visual.TextBox2(
+    uber_gender_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[2][3]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -708,10 +744,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='uber_stars_text',
-         depth=-15, autoLog=True,
+         name='uber_gender_text',
+         depth=-17, autoLog=True,
     )
-    uber_gender_text = visual.TextBox2(
+    uber_travels_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
          ori=0.0, pos=[positions[2][4]], draggable=False, units='norm',     letterHeight=0.05,
          size=box_size, borderWidth=2.0,
@@ -724,8 +760,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          fillColor=None, borderColor=None,
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
-         name='uber_gender_text',
-         depth=-16, autoLog=True,
+         name='uber_travels_text',
+         depth=-18, autoLog=True,
     )
     uber_record_text = visual.TextBox2(
          win, text='', placeholder='Type here...', font='Arial',
@@ -741,103 +777,109 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
          flipHoriz=False, flipVert=False, languageStyle='LTR',
          editable=False,
          name='uber_record_text',
-         depth=-17, autoLog=True,
+         depth=-19, autoLog=True,
     )
+    hora_inicio_viaje_roi = visual.ROI(win, name='hora_inicio_viaje_roi', device=eyetracker,
+        debug=False,
+        shape='rectangle',
+        pos=position_time_of_day, size=box_size, 
+        anchor='center', ori=0.0, depth=-20
+        )
     cam_inicio_viaje_roi = visual.ROI(win, name='cam_inicio_viaje_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][0]], size=box_size, 
-        anchor='center', ori=0.0, depth=-18
+        anchor='center', ori=0.0, depth=-21
         )
     cam_travel_time_roi = visual.ROI(win, name='cam_travel_time_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][1]], size=box_size, 
-        anchor='center', ori=0.0, depth=-19
+        anchor='center', ori=0.0, depth=-22
         )
     cam_cost_roi = visual.ROI(win, name='cam_cost_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][2]], size=box_size, 
-        anchor='center', ori=0.0, depth=-20
+        anchor='center', ori=0.0, depth=-23
         )
     cam_dens_roi = visual.ROI(win, name='cam_dens_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][3]], size=box_size, 
-        anchor='center', ori=0.0, depth=-21
+        anchor='center', ori=0.0, depth=-24
         )
     cam_sec_roi = visual.ROI(win, name='cam_sec_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][4]], size=box_size, 
-        anchor='center', ori=0.0, depth=-22
+        anchor='center', ori=0.0, depth=-25
         )
     metro_inicio_viaje_roi = visual.ROI(win, name='metro_inicio_viaje_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][0]], size=box_size, 
-        anchor='center', ori=0.0, depth=-23
+        anchor='center', ori=0.0, depth=-26
         )
     metro_travel_time_roi = visual.ROI(win, name='metro_travel_time_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][1]], size=box_size, 
-        anchor='center', ori=0.0, depth=-24
+        anchor='center', ori=0.0, depth=-27
         )
     metro_cost_roi = visual.ROI(win, name='metro_cost_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][2]], size=box_size, 
-        anchor='center', ori=0.0, depth=-25
+        anchor='center', ori=0.0, depth=-28
         )
     metro_dens_roi = visual.ROI(win, name='metro_dens_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][3]], size=box_size, 
-        anchor='center', ori=0.0, depth=-26
+        anchor='center', ori=0.0, depth=-29
         )
     metro_users_roi = visual.ROI(win, name='metro_users_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][4]], size=box_size, 
-        anchor='center', ori=0.0, depth=-27
+        anchor='center', ori=0.0, depth=-30
         )
     uber_inicio_viaje_roi = visual.ROI(win, name='uber_inicio_viaje_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][0]], size=box_size, 
-        anchor='center', ori=0.0, depth=-28
+        anchor='center', ori=0.0, depth=-31
         )
     uber_travel_time_roi = visual.ROI(win, name='uber_travel_time_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][1]], size=box_size, 
-        anchor='center', ori=0.0, depth=-29
+        anchor='center', ori=0.0, depth=-32
         )
     uber_cost_roi = visual.ROI(win, name='uber_cost_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][2]], size=box_size, 
-        anchor='center', ori=0.0, depth=-30
+        anchor='center', ori=0.0, depth=-33
         )
     uber_stars_roi = visual.ROI(win, name='uber_stars_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][3]], size=box_size, 
-        anchor='center', ori=0.0, depth=-31
+        anchor='center', ori=0.0, depth=-34
         )
     uber_gender_roi = visual.ROI(win, name='uber_gender_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][4]], size=box_size, 
-        anchor='center', ori=0.0, depth=-32
+        anchor='center', ori=0.0, depth=-35
         )
     uber_record_roi = visual.ROI(win, name='uber_record_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][5]], size=box_size, 
-        anchor='center', ori=0.0, depth=-33
+        anchor='center', ori=0.0, depth=-36
         )
     respuesta = keyboard.Keyboard(deviceName='respuesta')
     
@@ -1056,7 +1098,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine trial
         trial = data.Routine(
             name='trial',
-            components=[fondo, cam_inicio_viaje, cam_travel_time_text, cam_cost_text, cam_dens_text, cam_sec_text, metro_inicio_viaje_text, metro_travel_time_text, metro_cost_text, metro_dens_text, metro_users_text, uber_inicio_viaje_text, uber_travel_time_text, uber_cost_text, uber_stars_text, uber_gender_text, uber_record_text, cam_inicio_viaje_roi, cam_travel_time_roi, cam_cost_roi, cam_dens_roi, cam_sec_roi, metro_inicio_viaje_roi, metro_travel_time_roi, metro_cost_roi, metro_dens_roi, metro_users_roi, uber_inicio_viaje_roi, uber_travel_time_roi, uber_cost_roi, uber_stars_roi, uber_gender_roi, uber_record_roi, respuesta],
+            components=[fondo, hora_inicio_viaje_text, cam_cost_text, cam_travel_time_text, cam_dens_text, cam_light_text, cam_sec_text, metro_cost_text, metro_travel_time_text, metro_dens_text, metro_inf_text, metro_guards_text, metro_users_text, uber_cost_text, uber_travel_time_text, uber_stars_text, uber_gender_text, uber_travels_text, uber_record_text, hora_inicio_viaje_roi, cam_inicio_viaje_roi, cam_travel_time_roi, cam_cost_roi, cam_dens_roi, cam_sec_roi, metro_inicio_viaje_roi, metro_travel_time_roi, metro_cost_roi, metro_dens_roi, metro_users_roi, uber_inicio_viaje_roi, uber_travel_time_roi, uber_cost_roi, uber_stars_roi, uber_gender_roi, uber_record_roi, respuesta],
         )
         trial.status = NOT_STARTED
         continueRoutine = True
@@ -1071,37 +1113,43 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         #cam_dens = df_params.loc[task_number, "cam_dens"]
         #cam_sec = df_params.loc[task_number, "cam_sec"]
         
-        cam_inicio_viaje.reset()
-        cam_inicio_viaje.setText(hora)
+        hora_inicio_viaje_text.reset()
+        hora_inicio_viaje_text.setText(hora)
+        cam_cost_text.reset()
         cam_travel_time_text.reset()
         cam_travel_time_text.setText(cam_travel_time)
-        cam_cost_text.reset()
         cam_dens_text.reset()
         cam_dens_text.setText(cam_dens)
+        cam_light_text.reset()
+        cam_light_text.setText(cam_light)
         cam_sec_text.reset()
         cam_sec_text.setText(cam_sec)
-        metro_inicio_viaje_text.reset()
-        metro_inicio_viaje_text.setText(hora)
-        metro_travel_time_text.reset()
-        metro_travel_time_text.setText(metro_travel_time)
         metro_cost_text.reset()
         metro_cost_text.setText(metro_cost)
+        metro_travel_time_text.reset()
+        metro_travel_time_text.setText(metro_travel_time)
         metro_dens_text.reset()
         metro_dens_text.setText(metro_dens)
+        metro_inf_text.reset()
+        metro_inf_text.setText(metro_inf)
+        metro_guards_text.reset()
+        metro_guards_text.setText(metro_guards)
         metro_users_text.reset()
         metro_users_text.setText(metro_users)
-        uber_inicio_viaje_text.reset()
-        uber_inicio_viaje_text.setText(hora)
-        uber_travel_time_text.reset()
-        uber_travel_time_text.setText(uber_travel_time)
         uber_cost_text.reset()
         uber_cost_text.setText(uber_cost)
+        uber_travel_time_text.reset()
+        uber_travel_time_text.setText(uber_travel_time)
         uber_stars_text.reset()
         uber_stars_text.setText(uber_stars)
         uber_gender_text.reset()
         uber_gender_text.setText(uber_driver_gender)
+        uber_travels_text.reset()
+        uber_travels_text.setText(uber_travels)
         uber_record_text.reset()
         uber_record_text.setText(uber_record)
+        # clear any previous roi data
+        hora_inicio_viaje_roi.reset()
         # clear any previous roi data
         cam_inicio_viaje_roi.reset()
         # clear any previous roi data
@@ -1191,43 +1239,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *cam_inicio_viaje* updates
+            # *hora_inicio_viaje_text* updates
             
-            # if cam_inicio_viaje is starting this frame...
-            if cam_inicio_viaje.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if hora_inicio_viaje_text is starting this frame...
+            if hora_inicio_viaje_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_inicio_viaje.frameNStart = frameN  # exact frame index
-                cam_inicio_viaje.tStart = t  # local t and not account for scr refresh
-                cam_inicio_viaje.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_inicio_viaje, 'tStartRefresh')  # time at next scr refresh
+                hora_inicio_viaje_text.frameNStart = frameN  # exact frame index
+                hora_inicio_viaje_text.tStart = t  # local t and not account for scr refresh
+                hora_inicio_viaje_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(hora_inicio_viaje_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_inicio_viaje.started')
+                thisExp.timestampOnFlip(win, 'hora_inicio_viaje_text.started')
                 # update status
-                cam_inicio_viaje.status = STARTED
-                cam_inicio_viaje.setAutoDraw(True)
+                hora_inicio_viaje_text.status = STARTED
+                hora_inicio_viaje_text.setAutoDraw(True)
             
-            # if cam_inicio_viaje is active this frame...
-            if cam_inicio_viaje.status == STARTED:
-                # update params
-                pass
-            
-            # *cam_travel_time_text* updates
-            
-            # if cam_travel_time_text is starting this frame...
-            if cam_travel_time_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                cam_travel_time_text.frameNStart = frameN  # exact frame index
-                cam_travel_time_text.tStart = t  # local t and not account for scr refresh
-                cam_travel_time_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_travel_time_text, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_travel_time_text.started')
-                # update status
-                cam_travel_time_text.status = STARTED
-                cam_travel_time_text.setAutoDraw(True)
-            
-            # if cam_travel_time_text is active this frame...
-            if cam_travel_time_text.status == STARTED:
+            # if hora_inicio_viaje_text is active this frame...
+            if hora_inicio_viaje_text.status == STARTED:
                 # update params
                 pass
             
@@ -1251,6 +1279,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *cam_travel_time_text* updates
+            
+            # if cam_travel_time_text is starting this frame...
+            if cam_travel_time_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                cam_travel_time_text.frameNStart = frameN  # exact frame index
+                cam_travel_time_text.tStart = t  # local t and not account for scr refresh
+                cam_travel_time_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_travel_time_text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'cam_travel_time_text.started')
+                # update status
+                cam_travel_time_text.status = STARTED
+                cam_travel_time_text.setAutoDraw(True)
+            
+            # if cam_travel_time_text is active this frame...
+            if cam_travel_time_text.status == STARTED:
+                # update params
+                pass
+            
             # *cam_dens_text* updates
             
             # if cam_dens_text is starting this frame...
@@ -1268,6 +1316,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # if cam_dens_text is active this frame...
             if cam_dens_text.status == STARTED:
+                # update params
+                pass
+            
+            # *cam_light_text* updates
+            
+            # if cam_light_text is starting this frame...
+            if cam_light_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                cam_light_text.frameNStart = frameN  # exact frame index
+                cam_light_text.tStart = t  # local t and not account for scr refresh
+                cam_light_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_light_text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'cam_light_text.started')
+                # update status
+                cam_light_text.status = STARTED
+                cam_light_text.setAutoDraw(True)
+            
+            # if cam_light_text is active this frame...
+            if cam_light_text.status == STARTED:
                 # update params
                 pass
             
@@ -1291,23 +1359,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *metro_inicio_viaje_text* updates
+            # *metro_cost_text* updates
             
-            # if metro_inicio_viaje_text is starting this frame...
-            if metro_inicio_viaje_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if metro_cost_text is starting this frame...
+            if metro_cost_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                metro_inicio_viaje_text.frameNStart = frameN  # exact frame index
-                metro_inicio_viaje_text.tStart = t  # local t and not account for scr refresh
-                metro_inicio_viaje_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(metro_inicio_viaje_text, 'tStartRefresh')  # time at next scr refresh
+                metro_cost_text.frameNStart = frameN  # exact frame index
+                metro_cost_text.tStart = t  # local t and not account for scr refresh
+                metro_cost_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(metro_cost_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'metro_inicio_viaje_text.started')
+                thisExp.timestampOnFlip(win, 'metro_cost_text.started')
                 # update status
-                metro_inicio_viaje_text.status = STARTED
-                metro_inicio_viaje_text.setAutoDraw(True)
+                metro_cost_text.status = STARTED
+                metro_cost_text.setAutoDraw(True)
             
-            # if metro_inicio_viaje_text is active this frame...
-            if metro_inicio_viaje_text.status == STARTED:
+            # if metro_cost_text is active this frame...
+            if metro_cost_text.status == STARTED:
                 # update params
                 pass
             
@@ -1331,26 +1399,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *metro_cost_text* updates
-            
-            # if metro_cost_text is starting this frame...
-            if metro_cost_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                metro_cost_text.frameNStart = frameN  # exact frame index
-                metro_cost_text.tStart = t  # local t and not account for scr refresh
-                metro_cost_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(metro_cost_text, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'metro_cost_text.started')
-                # update status
-                metro_cost_text.status = STARTED
-                metro_cost_text.setAutoDraw(True)
-            
-            # if metro_cost_text is active this frame...
-            if metro_cost_text.status == STARTED:
-                # update params
-                pass
-            
             # *metro_dens_text* updates
             
             # if metro_dens_text is starting this frame...
@@ -1368,6 +1416,46 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # if metro_dens_text is active this frame...
             if metro_dens_text.status == STARTED:
+                # update params
+                pass
+            
+            # *metro_inf_text* updates
+            
+            # if metro_inf_text is starting this frame...
+            if metro_inf_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                metro_inf_text.frameNStart = frameN  # exact frame index
+                metro_inf_text.tStart = t  # local t and not account for scr refresh
+                metro_inf_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(metro_inf_text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'metro_inf_text.started')
+                # update status
+                metro_inf_text.status = STARTED
+                metro_inf_text.setAutoDraw(True)
+            
+            # if metro_inf_text is active this frame...
+            if metro_inf_text.status == STARTED:
+                # update params
+                pass
+            
+            # *metro_guards_text* updates
+            
+            # if metro_guards_text is starting this frame...
+            if metro_guards_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                metro_guards_text.frameNStart = frameN  # exact frame index
+                metro_guards_text.tStart = t  # local t and not account for scr refresh
+                metro_guards_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(metro_guards_text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'metro_guards_text.started')
+                # update status
+                metro_guards_text.status = STARTED
+                metro_guards_text.setAutoDraw(True)
+            
+            # if metro_guards_text is active this frame...
+            if metro_guards_text.status == STARTED:
                 # update params
                 pass
             
@@ -1391,23 +1479,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *uber_inicio_viaje_text* updates
+            # *uber_cost_text* updates
             
-            # if uber_inicio_viaje_text is starting this frame...
-            if uber_inicio_viaje_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if uber_cost_text is starting this frame...
+            if uber_cost_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                uber_inicio_viaje_text.frameNStart = frameN  # exact frame index
-                uber_inicio_viaje_text.tStart = t  # local t and not account for scr refresh
-                uber_inicio_viaje_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(uber_inicio_viaje_text, 'tStartRefresh')  # time at next scr refresh
+                uber_cost_text.frameNStart = frameN  # exact frame index
+                uber_cost_text.tStart = t  # local t and not account for scr refresh
+                uber_cost_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(uber_cost_text, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'uber_inicio_viaje_text.started')
+                thisExp.timestampOnFlip(win, 'uber_cost_text.started')
                 # update status
-                uber_inicio_viaje_text.status = STARTED
-                uber_inicio_viaje_text.setAutoDraw(True)
+                uber_cost_text.status = STARTED
+                uber_cost_text.setAutoDraw(True)
             
-            # if uber_inicio_viaje_text is active this frame...
-            if uber_inicio_viaje_text.status == STARTED:
+            # if uber_cost_text is active this frame...
+            if uber_cost_text.status == STARTED:
                 # update params
                 pass
             
@@ -1428,26 +1516,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # if uber_travel_time_text is active this frame...
             if uber_travel_time_text.status == STARTED:
-                # update params
-                pass
-            
-            # *uber_cost_text* updates
-            
-            # if uber_cost_text is starting this frame...
-            if uber_cost_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                uber_cost_text.frameNStart = frameN  # exact frame index
-                uber_cost_text.tStart = t  # local t and not account for scr refresh
-                uber_cost_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(uber_cost_text, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'uber_cost_text.started')
-                # update status
-                uber_cost_text.status = STARTED
-                uber_cost_text.setAutoDraw(True)
-            
-            # if uber_cost_text is active this frame...
-            if uber_cost_text.status == STARTED:
                 # update params
                 pass
             
@@ -1491,6 +1559,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *uber_travels_text* updates
+            
+            # if uber_travels_text is starting this frame...
+            if uber_travels_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                uber_travels_text.frameNStart = frameN  # exact frame index
+                uber_travels_text.tStart = t  # local t and not account for scr refresh
+                uber_travels_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(uber_travels_text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'uber_travels_text.started')
+                # update status
+                uber_travels_text.status = STARTED
+                uber_travels_text.setAutoDraw(True)
+            
+            # if uber_travels_text is active this frame...
+            if uber_travels_text.status == STARTED:
+                # update params
+                pass
+            
             # *uber_record_text* updates
             
             # if uber_record_text is starting this frame...
@@ -1510,6 +1598,39 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if uber_record_text.status == STARTED:
                 # update params
                 pass
+            
+            # if hora_inicio_viaje_roi is starting this frame...
+            if hora_inicio_viaje_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                hora_inicio_viaje_roi.frameNStart = frameN  # exact frame index
+                hora_inicio_viaje_roi.tStart = t  # local t and not account for scr refresh
+                hora_inicio_viaje_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(hora_inicio_viaje_roi, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'hora_inicio_viaje_roi.started')
+                # update status
+                hora_inicio_viaje_roi.status = STARTED
+                hora_inicio_viaje_roi.setAutoDraw(True)
+            
+            # if hora_inicio_viaje_roi is active this frame...
+            if hora_inicio_viaje_roi.status == STARTED:
+                # update params
+                pass
+                # check whether hora_inicio_viaje_roi has been looked in
+                if hora_inicio_viaje_roi.isLookedIn:
+                    if not hora_inicio_viaje_roi.wasLookedIn:
+                        hora_inicio_viaje_roi.timesOn.append(hora_inicio_viaje_roi.clock.getTime()) # store time of first look
+                        hora_inicio_viaje_roi.timesOff.append(hora_inicio_viaje_roi.clock.getTime()) # store time looked until
+                    else:
+                        hora_inicio_viaje_roi.timesOff[-1] = hora_inicio_viaje_roi.clock.getTime() # update time looked until
+                    hora_inicio_viaje_roi.wasLookedIn = True  # if hora_inicio_viaje_roi is still looked at next frame, it is not a new look
+                else:
+                    if hora_inicio_viaje_roi.wasLookedIn:
+                        hora_inicio_viaje_roi.timesOff[-1] = hora_inicio_viaje_roi.clock.getTime() # update time looked until
+                    hora_inicio_viaje_roi.wasLookedIn = False  # if hora_inicio_viaje_roi is looked at next frame, it is a new look
+            else:
+                hora_inicio_viaje_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                hora_inicio_viaje_roi.wasLookedIn = False  # if hora_inicio_viaje_roi is looked at next frame, it is a new look
             
             # if cam_inicio_viaje_roi is starting this frame...
             if cam_inicio_viaje_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -2058,7 +2179,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.callOnFlip(respuesta.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(respuesta.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if respuesta.status == STARTED and not waitOnFlip:
-                theseKeys = respuesta.getKeys(keyList=['1','2','3'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = respuesta.getKeys(keyList=['a','b','c'], ignoreKeys=["escape"], waitRelease=False)
                 _respuesta_allKeys.extend(theseKeys)
                 if len(_respuesta_allKeys):
                     respuesta.keys = _respuesta_allKeys[-1].name  # just the last key pressed
@@ -2106,6 +2227,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         trial.tStop = globalClock.getTime(format='float')
         trial.tStopRefresh = tThisFlipGlobal
         thisExp.addData('trial.stopped', trial.tStop)
+        task.addData('hora_inicio_viaje_roi.numLooks', hora_inicio_viaje_roi.numLooks)
+        if hora_inicio_viaje_roi.numLooks:
+           task.addData('hora_inicio_viaje_roi.timesOn', hora_inicio_viaje_roi.timesOn)
+           task.addData('hora_inicio_viaje_roi.timesOff', hora_inicio_viaje_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           hora_inicio_viaje_roi.dwellTime = 0.0
+           for i in range(len(hora_inicio_viaje_roi.timesOn)):
+               hora_inicio_viaje_roi.dwellTime += hora_inicio_viaje_roi.timesOff[i] - hora_inicio_viaje_roi.timesOn[i]
+           task.addData('hora_inicio_viaje_roi.dwellTime', hora_inicio_viaje_roi.dwellTime)
+        else:
+           task.addData('hora_inicio_viaje_roi.timesOn', "")
+           task.addData('hora_inicio_viaje_roi.timesOff', "")
         task.addData('cam_inicio_viaje_roi.numLooks', cam_inicio_viaje_roi.numLooks)
         if cam_inicio_viaje_roi.numLooks:
            task.addData('cam_inicio_viaje_roi.timesOn', cam_inicio_viaje_roi.timesOn)
