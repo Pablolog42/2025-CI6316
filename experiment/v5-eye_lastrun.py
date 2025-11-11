@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 10, 2025, at 23:38
+    on noviembre 11, 2025, at 20:34
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -785,7 +785,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         pos=position_time_of_day, size=box_size, 
         anchor='center', ori=0.0, depth=-20
         )
-    cam_inicio_viaje_roi = visual.ROI(win, name='cam_inicio_viaje_roi', device=eyetracker,
+    cam_cost_roi = visual.ROI(win, name='cam_cost_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][0]], size=box_size, 
@@ -797,13 +797,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         pos=[positions[0][1]], size=box_size, 
         anchor='center', ori=0.0, depth=-22
         )
-    cam_cost_roi = visual.ROI(win, name='cam_cost_roi', device=eyetracker,
+    cam_dens_roi = visual.ROI(win, name='cam_dens_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][2]], size=box_size, 
         anchor='center', ori=0.0, depth=-23
         )
-    cam_dens_roi = visual.ROI(win, name='cam_dens_roi', device=eyetracker,
+    cam_light_roi = visual.ROI(win, name='cam_light_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[0][3]], size=box_size, 
@@ -815,7 +815,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         pos=[positions[0][4]], size=box_size, 
         anchor='center', ori=0.0, depth=-25
         )
-    metro_inicio_viaje_roi = visual.ROI(win, name='metro_inicio_viaje_roi', device=eyetracker,
+    metro_cost_roi = visual.ROI(win, name='metro_cost_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][0]], size=box_size, 
@@ -827,59 +827,65 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         pos=[positions[1][1]], size=box_size, 
         anchor='center', ori=0.0, depth=-27
         )
-    metro_cost_roi = visual.ROI(win, name='metro_cost_roi', device=eyetracker,
+    metro_dens_roi = visual.ROI(win, name='metro_dens_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][2]], size=box_size, 
         anchor='center', ori=0.0, depth=-28
         )
-    metro_dens_roi = visual.ROI(win, name='metro_dens_roi', device=eyetracker,
+    metro_inf_roi = visual.ROI(win, name='metro_inf_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][3]], size=box_size, 
         anchor='center', ori=0.0, depth=-29
         )
-    metro_users_roi = visual.ROI(win, name='metro_users_roi', device=eyetracker,
+    metro_guards_roi = visual.ROI(win, name='metro_guards_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[1][4]], size=box_size, 
         anchor='center', ori=0.0, depth=-30
         )
-    uber_inicio_viaje_roi = visual.ROI(win, name='uber_inicio_viaje_roi', device=eyetracker,
+    metro_users_roi = visual.ROI(win, name='metro_users_roi', device=eyetracker,
+        debug=False,
+        shape='rectangle',
+        pos=[positions[1][4]], size=box_size, 
+        anchor='center', ori=0.0, depth=-31
+        )
+    uber_cost_roi = visual.ROI(win, name='uber_cost_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][0]], size=box_size, 
-        anchor='center', ori=0.0, depth=-31
+        anchor='center', ori=0.0, depth=-32
         )
     uber_travel_time_roi = visual.ROI(win, name='uber_travel_time_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][1]], size=box_size, 
-        anchor='center', ori=0.0, depth=-32
-        )
-    uber_cost_roi = visual.ROI(win, name='uber_cost_roi', device=eyetracker,
-        debug=False,
-        shape='rectangle',
-        pos=[positions[2][2]], size=box_size, 
         anchor='center', ori=0.0, depth=-33
         )
     uber_stars_roi = visual.ROI(win, name='uber_stars_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
-        pos=[positions[2][3]], size=box_size, 
+        pos=[positions[2][2]], size=box_size, 
         anchor='center', ori=0.0, depth=-34
         )
     uber_gender_roi = visual.ROI(win, name='uber_gender_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
-        pos=[positions[2][4]], size=box_size, 
+        pos=[positions[2][3]], size=box_size, 
         anchor='center', ori=0.0, depth=-35
+        )
+    uber_travels_roi = visual.ROI(win, name='uber_travels_roi', device=eyetracker,
+        debug=False,
+        shape='rectangle',
+        pos=[positions[2][4]], size=box_size, 
+        anchor='center', ori=0.0, depth=-36
         )
     uber_record_roi = visual.ROI(win, name='uber_record_roi', device=eyetracker,
         debug=False,
         shape='rectangle',
         pos=[positions[2][5]], size=box_size, 
-        anchor='center', ori=0.0, depth=-36
+        anchor='center', ori=0.0, depth=-37
         )
     respuesta = keyboard.Keyboard(deviceName='respuesta')
     
@@ -1098,7 +1104,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine trial
         trial = data.Routine(
             name='trial',
-            components=[fondo, hora_inicio_viaje_text, cam_cost_text, cam_travel_time_text, cam_dens_text, cam_light_text, cam_sec_text, metro_cost_text, metro_travel_time_text, metro_dens_text, metro_inf_text, metro_guards_text, metro_users_text, uber_cost_text, uber_travel_time_text, uber_stars_text, uber_gender_text, uber_travels_text, uber_record_text, hora_inicio_viaje_roi, cam_inicio_viaje_roi, cam_travel_time_roi, cam_cost_roi, cam_dens_roi, cam_sec_roi, metro_inicio_viaje_roi, metro_travel_time_roi, metro_cost_roi, metro_dens_roi, metro_users_roi, uber_inicio_viaje_roi, uber_travel_time_roi, uber_cost_roi, uber_stars_roi, uber_gender_roi, uber_record_roi, respuesta],
+            components=[fondo, hora_inicio_viaje_text, cam_cost_text, cam_travel_time_text, cam_dens_text, cam_light_text, cam_sec_text, metro_cost_text, metro_travel_time_text, metro_dens_text, metro_inf_text, metro_guards_text, metro_users_text, uber_cost_text, uber_travel_time_text, uber_stars_text, uber_gender_text, uber_travels_text, uber_record_text, hora_inicio_viaje_roi, cam_cost_roi, cam_travel_time_roi, cam_dens_roi, cam_light_roi, cam_sec_roi, metro_cost_roi, metro_travel_time_roi, metro_dens_roi, metro_inf_roi, metro_guards_roi, metro_users_roi, uber_cost_roi, uber_travel_time_roi, uber_stars_roi, uber_gender_roi, uber_travels_roi, uber_record_roi, respuesta],
         )
         trial.status = NOT_STARTED
         continueRoutine = True
@@ -1151,35 +1157,37 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # clear any previous roi data
         hora_inicio_viaje_roi.reset()
         # clear any previous roi data
-        cam_inicio_viaje_roi.reset()
+        cam_cost_roi.reset()
         # clear any previous roi data
         cam_travel_time_roi.reset()
         # clear any previous roi data
-        cam_cost_roi.reset()
-        # clear any previous roi data
         cam_dens_roi.reset()
+        # clear any previous roi data
+        cam_light_roi.reset()
         # clear any previous roi data
         cam_sec_roi.reset()
         # clear any previous roi data
-        metro_inicio_viaje_roi.reset()
+        metro_cost_roi.reset()
         # clear any previous roi data
         metro_travel_time_roi.reset()
         # clear any previous roi data
-        metro_cost_roi.reset()
-        # clear any previous roi data
         metro_dens_roi.reset()
+        # clear any previous roi data
+        metro_inf_roi.reset()
+        # clear any previous roi data
+        metro_guards_roi.reset()
         # clear any previous roi data
         metro_users_roi.reset()
         # clear any previous roi data
-        uber_inicio_viaje_roi.reset()
+        uber_cost_roi.reset()
         # clear any previous roi data
         uber_travel_time_roi.reset()
-        # clear any previous roi data
-        uber_cost_roi.reset()
         # clear any previous roi data
         uber_stars_roi.reset()
         # clear any previous roi data
         uber_gender_roi.reset()
+        # clear any previous roi data
+        uber_travels_roi.reset()
         # clear any previous roi data
         uber_record_roi.reset()
         # create starting attributes for respuesta
@@ -1632,38 +1640,38 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 hora_inicio_viaje_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 hora_inicio_viaje_roi.wasLookedIn = False  # if hora_inicio_viaje_roi is looked at next frame, it is a new look
             
-            # if cam_inicio_viaje_roi is starting this frame...
-            if cam_inicio_viaje_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if cam_cost_roi is starting this frame...
+            if cam_cost_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                cam_inicio_viaje_roi.frameNStart = frameN  # exact frame index
-                cam_inicio_viaje_roi.tStart = t  # local t and not account for scr refresh
-                cam_inicio_viaje_roi.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_inicio_viaje_roi, 'tStartRefresh')  # time at next scr refresh
+                cam_cost_roi.frameNStart = frameN  # exact frame index
+                cam_cost_roi.tStart = t  # local t and not account for scr refresh
+                cam_cost_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_cost_roi, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_inicio_viaje_roi.started')
+                thisExp.timestampOnFlip(win, 'cam_cost_roi.started')
                 # update status
-                cam_inicio_viaje_roi.status = STARTED
-                cam_inicio_viaje_roi.setAutoDraw(True)
+                cam_cost_roi.status = STARTED
+                cam_cost_roi.setAutoDraw(True)
             
-            # if cam_inicio_viaje_roi is active this frame...
-            if cam_inicio_viaje_roi.status == STARTED:
+            # if cam_cost_roi is active this frame...
+            if cam_cost_roi.status == STARTED:
                 # update params
                 pass
-                # check whether cam_inicio_viaje_roi has been looked in
-                if cam_inicio_viaje_roi.isLookedIn:
-                    if not cam_inicio_viaje_roi.wasLookedIn:
-                        cam_inicio_viaje_roi.timesOn.append(cam_inicio_viaje_roi.clock.getTime()) # store time of first look
-                        cam_inicio_viaje_roi.timesOff.append(cam_inicio_viaje_roi.clock.getTime()) # store time looked until
+                # check whether cam_cost_roi has been looked in
+                if cam_cost_roi.isLookedIn:
+                    if not cam_cost_roi.wasLookedIn:
+                        cam_cost_roi.timesOn.append(cam_cost_roi.clock.getTime()) # store time of first look
+                        cam_cost_roi.timesOff.append(cam_cost_roi.clock.getTime()) # store time looked until
                     else:
-                        cam_inicio_viaje_roi.timesOff[-1] = cam_inicio_viaje_roi.clock.getTime() # update time looked until
-                    cam_inicio_viaje_roi.wasLookedIn = True  # if cam_inicio_viaje_roi is still looked at next frame, it is not a new look
+                        cam_cost_roi.timesOff[-1] = cam_cost_roi.clock.getTime() # update time looked until
+                    cam_cost_roi.wasLookedIn = True  # if cam_cost_roi is still looked at next frame, it is not a new look
                 else:
-                    if cam_inicio_viaje_roi.wasLookedIn:
-                        cam_inicio_viaje_roi.timesOff[-1] = cam_inicio_viaje_roi.clock.getTime() # update time looked until
-                    cam_inicio_viaje_roi.wasLookedIn = False  # if cam_inicio_viaje_roi is looked at next frame, it is a new look
+                    if cam_cost_roi.wasLookedIn:
+                        cam_cost_roi.timesOff[-1] = cam_cost_roi.clock.getTime() # update time looked until
+                    cam_cost_roi.wasLookedIn = False  # if cam_cost_roi is looked at next frame, it is a new look
             else:
-                cam_inicio_viaje_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
-                cam_inicio_viaje_roi.wasLookedIn = False  # if cam_inicio_viaje_roi is looked at next frame, it is a new look
+                cam_cost_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                cam_cost_roi.wasLookedIn = False  # if cam_cost_roi is looked at next frame, it is a new look
             
             # if cam_travel_time_roi is starting this frame...
             if cam_travel_time_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -1698,39 +1706,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 cam_travel_time_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 cam_travel_time_roi.wasLookedIn = False  # if cam_travel_time_roi is looked at next frame, it is a new look
             
-            # if cam_cost_roi is starting this frame...
-            if cam_cost_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                cam_cost_roi.frameNStart = frameN  # exact frame index
-                cam_cost_roi.tStart = t  # local t and not account for scr refresh
-                cam_cost_roi.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(cam_cost_roi, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'cam_cost_roi.started')
-                # update status
-                cam_cost_roi.status = STARTED
-                cam_cost_roi.setAutoDraw(True)
-            
-            # if cam_cost_roi is active this frame...
-            if cam_cost_roi.status == STARTED:
-                # update params
-                pass
-                # check whether cam_cost_roi has been looked in
-                if cam_cost_roi.isLookedIn:
-                    if not cam_cost_roi.wasLookedIn:
-                        cam_cost_roi.timesOn.append(cam_cost_roi.clock.getTime()) # store time of first look
-                        cam_cost_roi.timesOff.append(cam_cost_roi.clock.getTime()) # store time looked until
-                    else:
-                        cam_cost_roi.timesOff[-1] = cam_cost_roi.clock.getTime() # update time looked until
-                    cam_cost_roi.wasLookedIn = True  # if cam_cost_roi is still looked at next frame, it is not a new look
-                else:
-                    if cam_cost_roi.wasLookedIn:
-                        cam_cost_roi.timesOff[-1] = cam_cost_roi.clock.getTime() # update time looked until
-                    cam_cost_roi.wasLookedIn = False  # if cam_cost_roi is looked at next frame, it is a new look
-            else:
-                cam_cost_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
-                cam_cost_roi.wasLookedIn = False  # if cam_cost_roi is looked at next frame, it is a new look
-            
             # if cam_dens_roi is starting this frame...
             if cam_dens_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
@@ -1763,6 +1738,39 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             else:
                 cam_dens_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 cam_dens_roi.wasLookedIn = False  # if cam_dens_roi is looked at next frame, it is a new look
+            
+            # if cam_light_roi is starting this frame...
+            if cam_light_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                cam_light_roi.frameNStart = frameN  # exact frame index
+                cam_light_roi.tStart = t  # local t and not account for scr refresh
+                cam_light_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(cam_light_roi, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'cam_light_roi.started')
+                # update status
+                cam_light_roi.status = STARTED
+                cam_light_roi.setAutoDraw(True)
+            
+            # if cam_light_roi is active this frame...
+            if cam_light_roi.status == STARTED:
+                # update params
+                pass
+                # check whether cam_light_roi has been looked in
+                if cam_light_roi.isLookedIn:
+                    if not cam_light_roi.wasLookedIn:
+                        cam_light_roi.timesOn.append(cam_light_roi.clock.getTime()) # store time of first look
+                        cam_light_roi.timesOff.append(cam_light_roi.clock.getTime()) # store time looked until
+                    else:
+                        cam_light_roi.timesOff[-1] = cam_light_roi.clock.getTime() # update time looked until
+                    cam_light_roi.wasLookedIn = True  # if cam_light_roi is still looked at next frame, it is not a new look
+                else:
+                    if cam_light_roi.wasLookedIn:
+                        cam_light_roi.timesOff[-1] = cam_light_roi.clock.getTime() # update time looked until
+                    cam_light_roi.wasLookedIn = False  # if cam_light_roi is looked at next frame, it is a new look
+            else:
+                cam_light_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                cam_light_roi.wasLookedIn = False  # if cam_light_roi is looked at next frame, it is a new look
             
             # if cam_sec_roi is starting this frame...
             if cam_sec_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -1797,38 +1805,38 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 cam_sec_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 cam_sec_roi.wasLookedIn = False  # if cam_sec_roi is looked at next frame, it is a new look
             
-            # if metro_inicio_viaje_roi is starting this frame...
-            if metro_inicio_viaje_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if metro_cost_roi is starting this frame...
+            if metro_cost_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                metro_inicio_viaje_roi.frameNStart = frameN  # exact frame index
-                metro_inicio_viaje_roi.tStart = t  # local t and not account for scr refresh
-                metro_inicio_viaje_roi.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(metro_inicio_viaje_roi, 'tStartRefresh')  # time at next scr refresh
+                metro_cost_roi.frameNStart = frameN  # exact frame index
+                metro_cost_roi.tStart = t  # local t and not account for scr refresh
+                metro_cost_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(metro_cost_roi, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'metro_inicio_viaje_roi.started')
+                thisExp.timestampOnFlip(win, 'metro_cost_roi.started')
                 # update status
-                metro_inicio_viaje_roi.status = STARTED
-                metro_inicio_viaje_roi.setAutoDraw(True)
+                metro_cost_roi.status = STARTED
+                metro_cost_roi.setAutoDraw(True)
             
-            # if metro_inicio_viaje_roi is active this frame...
-            if metro_inicio_viaje_roi.status == STARTED:
+            # if metro_cost_roi is active this frame...
+            if metro_cost_roi.status == STARTED:
                 # update params
                 pass
-                # check whether metro_inicio_viaje_roi has been looked in
-                if metro_inicio_viaje_roi.isLookedIn:
-                    if not metro_inicio_viaje_roi.wasLookedIn:
-                        metro_inicio_viaje_roi.timesOn.append(metro_inicio_viaje_roi.clock.getTime()) # store time of first look
-                        metro_inicio_viaje_roi.timesOff.append(metro_inicio_viaje_roi.clock.getTime()) # store time looked until
+                # check whether metro_cost_roi has been looked in
+                if metro_cost_roi.isLookedIn:
+                    if not metro_cost_roi.wasLookedIn:
+                        metro_cost_roi.timesOn.append(metro_cost_roi.clock.getTime()) # store time of first look
+                        metro_cost_roi.timesOff.append(metro_cost_roi.clock.getTime()) # store time looked until
                     else:
-                        metro_inicio_viaje_roi.timesOff[-1] = metro_inicio_viaje_roi.clock.getTime() # update time looked until
-                    metro_inicio_viaje_roi.wasLookedIn = True  # if metro_inicio_viaje_roi is still looked at next frame, it is not a new look
+                        metro_cost_roi.timesOff[-1] = metro_cost_roi.clock.getTime() # update time looked until
+                    metro_cost_roi.wasLookedIn = True  # if metro_cost_roi is still looked at next frame, it is not a new look
                 else:
-                    if metro_inicio_viaje_roi.wasLookedIn:
-                        metro_inicio_viaje_roi.timesOff[-1] = metro_inicio_viaje_roi.clock.getTime() # update time looked until
-                    metro_inicio_viaje_roi.wasLookedIn = False  # if metro_inicio_viaje_roi is looked at next frame, it is a new look
+                    if metro_cost_roi.wasLookedIn:
+                        metro_cost_roi.timesOff[-1] = metro_cost_roi.clock.getTime() # update time looked until
+                    metro_cost_roi.wasLookedIn = False  # if metro_cost_roi is looked at next frame, it is a new look
             else:
-                metro_inicio_viaje_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
-                metro_inicio_viaje_roi.wasLookedIn = False  # if metro_inicio_viaje_roi is looked at next frame, it is a new look
+                metro_cost_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                metro_cost_roi.wasLookedIn = False  # if metro_cost_roi is looked at next frame, it is a new look
             
             # if metro_travel_time_roi is starting this frame...
             if metro_travel_time_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -1863,39 +1871,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 metro_travel_time_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 metro_travel_time_roi.wasLookedIn = False  # if metro_travel_time_roi is looked at next frame, it is a new look
             
-            # if metro_cost_roi is starting this frame...
-            if metro_cost_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                metro_cost_roi.frameNStart = frameN  # exact frame index
-                metro_cost_roi.tStart = t  # local t and not account for scr refresh
-                metro_cost_roi.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(metro_cost_roi, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'metro_cost_roi.started')
-                # update status
-                metro_cost_roi.status = STARTED
-                metro_cost_roi.setAutoDraw(True)
-            
-            # if metro_cost_roi is active this frame...
-            if metro_cost_roi.status == STARTED:
-                # update params
-                pass
-                # check whether metro_cost_roi has been looked in
-                if metro_cost_roi.isLookedIn:
-                    if not metro_cost_roi.wasLookedIn:
-                        metro_cost_roi.timesOn.append(metro_cost_roi.clock.getTime()) # store time of first look
-                        metro_cost_roi.timesOff.append(metro_cost_roi.clock.getTime()) # store time looked until
-                    else:
-                        metro_cost_roi.timesOff[-1] = metro_cost_roi.clock.getTime() # update time looked until
-                    metro_cost_roi.wasLookedIn = True  # if metro_cost_roi is still looked at next frame, it is not a new look
-                else:
-                    if metro_cost_roi.wasLookedIn:
-                        metro_cost_roi.timesOff[-1] = metro_cost_roi.clock.getTime() # update time looked until
-                    metro_cost_roi.wasLookedIn = False  # if metro_cost_roi is looked at next frame, it is a new look
-            else:
-                metro_cost_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
-                metro_cost_roi.wasLookedIn = False  # if metro_cost_roi is looked at next frame, it is a new look
-            
             # if metro_dens_roi is starting this frame...
             if metro_dens_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
@@ -1928,6 +1903,72 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             else:
                 metro_dens_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 metro_dens_roi.wasLookedIn = False  # if metro_dens_roi is looked at next frame, it is a new look
+            
+            # if metro_inf_roi is starting this frame...
+            if metro_inf_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                metro_inf_roi.frameNStart = frameN  # exact frame index
+                metro_inf_roi.tStart = t  # local t and not account for scr refresh
+                metro_inf_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(metro_inf_roi, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'metro_inf_roi.started')
+                # update status
+                metro_inf_roi.status = STARTED
+                metro_inf_roi.setAutoDraw(True)
+            
+            # if metro_inf_roi is active this frame...
+            if metro_inf_roi.status == STARTED:
+                # update params
+                pass
+                # check whether metro_inf_roi has been looked in
+                if metro_inf_roi.isLookedIn:
+                    if not metro_inf_roi.wasLookedIn:
+                        metro_inf_roi.timesOn.append(metro_inf_roi.clock.getTime()) # store time of first look
+                        metro_inf_roi.timesOff.append(metro_inf_roi.clock.getTime()) # store time looked until
+                    else:
+                        metro_inf_roi.timesOff[-1] = metro_inf_roi.clock.getTime() # update time looked until
+                    metro_inf_roi.wasLookedIn = True  # if metro_inf_roi is still looked at next frame, it is not a new look
+                else:
+                    if metro_inf_roi.wasLookedIn:
+                        metro_inf_roi.timesOff[-1] = metro_inf_roi.clock.getTime() # update time looked until
+                    metro_inf_roi.wasLookedIn = False  # if metro_inf_roi is looked at next frame, it is a new look
+            else:
+                metro_inf_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                metro_inf_roi.wasLookedIn = False  # if metro_inf_roi is looked at next frame, it is a new look
+            
+            # if metro_guards_roi is starting this frame...
+            if metro_guards_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                metro_guards_roi.frameNStart = frameN  # exact frame index
+                metro_guards_roi.tStart = t  # local t and not account for scr refresh
+                metro_guards_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(metro_guards_roi, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'metro_guards_roi.started')
+                # update status
+                metro_guards_roi.status = STARTED
+                metro_guards_roi.setAutoDraw(True)
+            
+            # if metro_guards_roi is active this frame...
+            if metro_guards_roi.status == STARTED:
+                # update params
+                pass
+                # check whether metro_guards_roi has been looked in
+                if metro_guards_roi.isLookedIn:
+                    if not metro_guards_roi.wasLookedIn:
+                        metro_guards_roi.timesOn.append(metro_guards_roi.clock.getTime()) # store time of first look
+                        metro_guards_roi.timesOff.append(metro_guards_roi.clock.getTime()) # store time looked until
+                    else:
+                        metro_guards_roi.timesOff[-1] = metro_guards_roi.clock.getTime() # update time looked until
+                    metro_guards_roi.wasLookedIn = True  # if metro_guards_roi is still looked at next frame, it is not a new look
+                else:
+                    if metro_guards_roi.wasLookedIn:
+                        metro_guards_roi.timesOff[-1] = metro_guards_roi.clock.getTime() # update time looked until
+                    metro_guards_roi.wasLookedIn = False  # if metro_guards_roi is looked at next frame, it is a new look
+            else:
+                metro_guards_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                metro_guards_roi.wasLookedIn = False  # if metro_guards_roi is looked at next frame, it is a new look
             
             # if metro_users_roi is starting this frame...
             if metro_users_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -1962,38 +2003,38 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 metro_users_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 metro_users_roi.wasLookedIn = False  # if metro_users_roi is looked at next frame, it is a new look
             
-            # if uber_inicio_viaje_roi is starting this frame...
-            if uber_inicio_viaje_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if uber_cost_roi is starting this frame...
+            if uber_cost_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                uber_inicio_viaje_roi.frameNStart = frameN  # exact frame index
-                uber_inicio_viaje_roi.tStart = t  # local t and not account for scr refresh
-                uber_inicio_viaje_roi.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(uber_inicio_viaje_roi, 'tStartRefresh')  # time at next scr refresh
+                uber_cost_roi.frameNStart = frameN  # exact frame index
+                uber_cost_roi.tStart = t  # local t and not account for scr refresh
+                uber_cost_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(uber_cost_roi, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'uber_inicio_viaje_roi.started')
+                thisExp.timestampOnFlip(win, 'uber_cost_roi.started')
                 # update status
-                uber_inicio_viaje_roi.status = STARTED
-                uber_inicio_viaje_roi.setAutoDraw(True)
+                uber_cost_roi.status = STARTED
+                uber_cost_roi.setAutoDraw(True)
             
-            # if uber_inicio_viaje_roi is active this frame...
-            if uber_inicio_viaje_roi.status == STARTED:
+            # if uber_cost_roi is active this frame...
+            if uber_cost_roi.status == STARTED:
                 # update params
                 pass
-                # check whether uber_inicio_viaje_roi has been looked in
-                if uber_inicio_viaje_roi.isLookedIn:
-                    if not uber_inicio_viaje_roi.wasLookedIn:
-                        uber_inicio_viaje_roi.timesOn.append(uber_inicio_viaje_roi.clock.getTime()) # store time of first look
-                        uber_inicio_viaje_roi.timesOff.append(uber_inicio_viaje_roi.clock.getTime()) # store time looked until
+                # check whether uber_cost_roi has been looked in
+                if uber_cost_roi.isLookedIn:
+                    if not uber_cost_roi.wasLookedIn:
+                        uber_cost_roi.timesOn.append(uber_cost_roi.clock.getTime()) # store time of first look
+                        uber_cost_roi.timesOff.append(uber_cost_roi.clock.getTime()) # store time looked until
                     else:
-                        uber_inicio_viaje_roi.timesOff[-1] = uber_inicio_viaje_roi.clock.getTime() # update time looked until
-                    uber_inicio_viaje_roi.wasLookedIn = True  # if uber_inicio_viaje_roi is still looked at next frame, it is not a new look
+                        uber_cost_roi.timesOff[-1] = uber_cost_roi.clock.getTime() # update time looked until
+                    uber_cost_roi.wasLookedIn = True  # if uber_cost_roi is still looked at next frame, it is not a new look
                 else:
-                    if uber_inicio_viaje_roi.wasLookedIn:
-                        uber_inicio_viaje_roi.timesOff[-1] = uber_inicio_viaje_roi.clock.getTime() # update time looked until
-                    uber_inicio_viaje_roi.wasLookedIn = False  # if uber_inicio_viaje_roi is looked at next frame, it is a new look
+                    if uber_cost_roi.wasLookedIn:
+                        uber_cost_roi.timesOff[-1] = uber_cost_roi.clock.getTime() # update time looked until
+                    uber_cost_roi.wasLookedIn = False  # if uber_cost_roi is looked at next frame, it is a new look
             else:
-                uber_inicio_viaje_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
-                uber_inicio_viaje_roi.wasLookedIn = False  # if uber_inicio_viaje_roi is looked at next frame, it is a new look
+                uber_cost_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                uber_cost_roi.wasLookedIn = False  # if uber_cost_roi is looked at next frame, it is a new look
             
             # if uber_travel_time_roi is starting this frame...
             if uber_travel_time_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -2027,39 +2068,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             else:
                 uber_travel_time_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 uber_travel_time_roi.wasLookedIn = False  # if uber_travel_time_roi is looked at next frame, it is a new look
-            
-            # if uber_cost_roi is starting this frame...
-            if uber_cost_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                uber_cost_roi.frameNStart = frameN  # exact frame index
-                uber_cost_roi.tStart = t  # local t and not account for scr refresh
-                uber_cost_roi.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(uber_cost_roi, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'uber_cost_roi.started')
-                # update status
-                uber_cost_roi.status = STARTED
-                uber_cost_roi.setAutoDraw(True)
-            
-            # if uber_cost_roi is active this frame...
-            if uber_cost_roi.status == STARTED:
-                # update params
-                pass
-                # check whether uber_cost_roi has been looked in
-                if uber_cost_roi.isLookedIn:
-                    if not uber_cost_roi.wasLookedIn:
-                        uber_cost_roi.timesOn.append(uber_cost_roi.clock.getTime()) # store time of first look
-                        uber_cost_roi.timesOff.append(uber_cost_roi.clock.getTime()) # store time looked until
-                    else:
-                        uber_cost_roi.timesOff[-1] = uber_cost_roi.clock.getTime() # update time looked until
-                    uber_cost_roi.wasLookedIn = True  # if uber_cost_roi is still looked at next frame, it is not a new look
-                else:
-                    if uber_cost_roi.wasLookedIn:
-                        uber_cost_roi.timesOff[-1] = uber_cost_roi.clock.getTime() # update time looked until
-                    uber_cost_roi.wasLookedIn = False  # if uber_cost_roi is looked at next frame, it is a new look
-            else:
-                uber_cost_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
-                uber_cost_roi.wasLookedIn = False  # if uber_cost_roi is looked at next frame, it is a new look
             
             # if uber_stars_roi is starting this frame...
             if uber_stars_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -2126,6 +2134,39 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             else:
                 uber_gender_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
                 uber_gender_roi.wasLookedIn = False  # if uber_gender_roi is looked at next frame, it is a new look
+            
+            # if uber_travels_roi is starting this frame...
+            if uber_travels_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                uber_travels_roi.frameNStart = frameN  # exact frame index
+                uber_travels_roi.tStart = t  # local t and not account for scr refresh
+                uber_travels_roi.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(uber_travels_roi, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'uber_travels_roi.started')
+                # update status
+                uber_travels_roi.status = STARTED
+                uber_travels_roi.setAutoDraw(True)
+            
+            # if uber_travels_roi is active this frame...
+            if uber_travels_roi.status == STARTED:
+                # update params
+                pass
+                # check whether uber_travels_roi has been looked in
+                if uber_travels_roi.isLookedIn:
+                    if not uber_travels_roi.wasLookedIn:
+                        uber_travels_roi.timesOn.append(uber_travels_roi.clock.getTime()) # store time of first look
+                        uber_travels_roi.timesOff.append(uber_travels_roi.clock.getTime()) # store time looked until
+                    else:
+                        uber_travels_roi.timesOff[-1] = uber_travels_roi.clock.getTime() # update time looked until
+                    uber_travels_roi.wasLookedIn = True  # if uber_travels_roi is still looked at next frame, it is not a new look
+                else:
+                    if uber_travels_roi.wasLookedIn:
+                        uber_travels_roi.timesOff[-1] = uber_travels_roi.clock.getTime() # update time looked until
+                    uber_travels_roi.wasLookedIn = False  # if uber_travels_roi is looked at next frame, it is a new look
+            else:
+                uber_travels_roi.clock.reset() # keep clock at 0 if roi hasn't started / has finished
+                uber_travels_roi.wasLookedIn = False  # if uber_travels_roi is looked at next frame, it is a new look
             
             # if uber_record_roi is starting this frame...
             if uber_record_roi.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -2239,30 +2280,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('hora_inicio_viaje_roi.timesOn', "")
            task.addData('hora_inicio_viaje_roi.timesOff', "")
-        task.addData('cam_inicio_viaje_roi.numLooks', cam_inicio_viaje_roi.numLooks)
-        if cam_inicio_viaje_roi.numLooks:
-           task.addData('cam_inicio_viaje_roi.timesOn', cam_inicio_viaje_roi.timesOn)
-           task.addData('cam_inicio_viaje_roi.timesOff', cam_inicio_viaje_roi.timesOff)
-           # calculate and store dwell times i.e. the duration between look onsets and offsets
-           cam_inicio_viaje_roi.dwellTime = 0.0
-           for i in range(len(cam_inicio_viaje_roi.timesOn)):
-               cam_inicio_viaje_roi.dwellTime += cam_inicio_viaje_roi.timesOff[i] - cam_inicio_viaje_roi.timesOn[i]
-           task.addData('cam_inicio_viaje_roi.dwellTime', cam_inicio_viaje_roi.dwellTime)
-        else:
-           task.addData('cam_inicio_viaje_roi.timesOn', "")
-           task.addData('cam_inicio_viaje_roi.timesOff', "")
-        task.addData('cam_travel_time_roi.numLooks', cam_travel_time_roi.numLooks)
-        if cam_travel_time_roi.numLooks:
-           task.addData('cam_travel_time_roi.timesOn', cam_travel_time_roi.timesOn)
-           task.addData('cam_travel_time_roi.timesOff', cam_travel_time_roi.timesOff)
-           # calculate and store dwell times i.e. the duration between look onsets and offsets
-           cam_travel_time_roi.dwellTime = 0.0
-           for i in range(len(cam_travel_time_roi.timesOn)):
-               cam_travel_time_roi.dwellTime += cam_travel_time_roi.timesOff[i] - cam_travel_time_roi.timesOn[i]
-           task.addData('cam_travel_time_roi.dwellTime', cam_travel_time_roi.dwellTime)
-        else:
-           task.addData('cam_travel_time_roi.timesOn', "")
-           task.addData('cam_travel_time_roi.timesOff', "")
         task.addData('cam_cost_roi.numLooks', cam_cost_roi.numLooks)
         if cam_cost_roi.numLooks:
            task.addData('cam_cost_roi.timesOn', cam_cost_roi.timesOn)
@@ -2275,6 +2292,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('cam_cost_roi.timesOn', "")
            task.addData('cam_cost_roi.timesOff', "")
+        task.addData('cam_travel_time_roi.numLooks', cam_travel_time_roi.numLooks)
+        if cam_travel_time_roi.numLooks:
+           task.addData('cam_travel_time_roi.timesOn', cam_travel_time_roi.timesOn)
+           task.addData('cam_travel_time_roi.timesOff', cam_travel_time_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           cam_travel_time_roi.dwellTime = 0.0
+           for i in range(len(cam_travel_time_roi.timesOn)):
+               cam_travel_time_roi.dwellTime += cam_travel_time_roi.timesOff[i] - cam_travel_time_roi.timesOn[i]
+           task.addData('cam_travel_time_roi.dwellTime', cam_travel_time_roi.dwellTime)
+        else:
+           task.addData('cam_travel_time_roi.timesOn', "")
+           task.addData('cam_travel_time_roi.timesOff', "")
         task.addData('cam_dens_roi.numLooks', cam_dens_roi.numLooks)
         if cam_dens_roi.numLooks:
            task.addData('cam_dens_roi.timesOn', cam_dens_roi.timesOn)
@@ -2287,6 +2316,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('cam_dens_roi.timesOn', "")
            task.addData('cam_dens_roi.timesOff', "")
+        task.addData('cam_light_roi.numLooks', cam_light_roi.numLooks)
+        if cam_light_roi.numLooks:
+           task.addData('cam_light_roi.timesOn', cam_light_roi.timesOn)
+           task.addData('cam_light_roi.timesOff', cam_light_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           cam_light_roi.dwellTime = 0.0
+           for i in range(len(cam_light_roi.timesOn)):
+               cam_light_roi.dwellTime += cam_light_roi.timesOff[i] - cam_light_roi.timesOn[i]
+           task.addData('cam_light_roi.dwellTime', cam_light_roi.dwellTime)
+        else:
+           task.addData('cam_light_roi.timesOn', "")
+           task.addData('cam_light_roi.timesOff', "")
         task.addData('cam_sec_roi.numLooks', cam_sec_roi.numLooks)
         if cam_sec_roi.numLooks:
            task.addData('cam_sec_roi.timesOn', cam_sec_roi.timesOn)
@@ -2299,30 +2340,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('cam_sec_roi.timesOn', "")
            task.addData('cam_sec_roi.timesOff', "")
-        task.addData('metro_inicio_viaje_roi.numLooks', metro_inicio_viaje_roi.numLooks)
-        if metro_inicio_viaje_roi.numLooks:
-           task.addData('metro_inicio_viaje_roi.timesOn', metro_inicio_viaje_roi.timesOn)
-           task.addData('metro_inicio_viaje_roi.timesOff', metro_inicio_viaje_roi.timesOff)
-           # calculate and store dwell times i.e. the duration between look onsets and offsets
-           metro_inicio_viaje_roi.dwellTime = 0.0
-           for i in range(len(metro_inicio_viaje_roi.timesOn)):
-               metro_inicio_viaje_roi.dwellTime += metro_inicio_viaje_roi.timesOff[i] - metro_inicio_viaje_roi.timesOn[i]
-           task.addData('metro_inicio_viaje_roi.dwellTime', metro_inicio_viaje_roi.dwellTime)
-        else:
-           task.addData('metro_inicio_viaje_roi.timesOn', "")
-           task.addData('metro_inicio_viaje_roi.timesOff', "")
-        task.addData('metro_travel_time_roi.numLooks', metro_travel_time_roi.numLooks)
-        if metro_travel_time_roi.numLooks:
-           task.addData('metro_travel_time_roi.timesOn', metro_travel_time_roi.timesOn)
-           task.addData('metro_travel_time_roi.timesOff', metro_travel_time_roi.timesOff)
-           # calculate and store dwell times i.e. the duration between look onsets and offsets
-           metro_travel_time_roi.dwellTime = 0.0
-           for i in range(len(metro_travel_time_roi.timesOn)):
-               metro_travel_time_roi.dwellTime += metro_travel_time_roi.timesOff[i] - metro_travel_time_roi.timesOn[i]
-           task.addData('metro_travel_time_roi.dwellTime', metro_travel_time_roi.dwellTime)
-        else:
-           task.addData('metro_travel_time_roi.timesOn', "")
-           task.addData('metro_travel_time_roi.timesOff', "")
         task.addData('metro_cost_roi.numLooks', metro_cost_roi.numLooks)
         if metro_cost_roi.numLooks:
            task.addData('metro_cost_roi.timesOn', metro_cost_roi.timesOn)
@@ -2335,6 +2352,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('metro_cost_roi.timesOn', "")
            task.addData('metro_cost_roi.timesOff', "")
+        task.addData('metro_travel_time_roi.numLooks', metro_travel_time_roi.numLooks)
+        if metro_travel_time_roi.numLooks:
+           task.addData('metro_travel_time_roi.timesOn', metro_travel_time_roi.timesOn)
+           task.addData('metro_travel_time_roi.timesOff', metro_travel_time_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           metro_travel_time_roi.dwellTime = 0.0
+           for i in range(len(metro_travel_time_roi.timesOn)):
+               metro_travel_time_roi.dwellTime += metro_travel_time_roi.timesOff[i] - metro_travel_time_roi.timesOn[i]
+           task.addData('metro_travel_time_roi.dwellTime', metro_travel_time_roi.dwellTime)
+        else:
+           task.addData('metro_travel_time_roi.timesOn', "")
+           task.addData('metro_travel_time_roi.timesOff', "")
         task.addData('metro_dens_roi.numLooks', metro_dens_roi.numLooks)
         if metro_dens_roi.numLooks:
            task.addData('metro_dens_roi.timesOn', metro_dens_roi.timesOn)
@@ -2347,6 +2376,30 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('metro_dens_roi.timesOn', "")
            task.addData('metro_dens_roi.timesOff', "")
+        task.addData('metro_inf_roi.numLooks', metro_inf_roi.numLooks)
+        if metro_inf_roi.numLooks:
+           task.addData('metro_inf_roi.timesOn', metro_inf_roi.timesOn)
+           task.addData('metro_inf_roi.timesOff', metro_inf_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           metro_inf_roi.dwellTime = 0.0
+           for i in range(len(metro_inf_roi.timesOn)):
+               metro_inf_roi.dwellTime += metro_inf_roi.timesOff[i] - metro_inf_roi.timesOn[i]
+           task.addData('metro_inf_roi.dwellTime', metro_inf_roi.dwellTime)
+        else:
+           task.addData('metro_inf_roi.timesOn', "")
+           task.addData('metro_inf_roi.timesOff', "")
+        task.addData('metro_guards_roi.numLooks', metro_guards_roi.numLooks)
+        if metro_guards_roi.numLooks:
+           task.addData('metro_guards_roi.timesOn', metro_guards_roi.timesOn)
+           task.addData('metro_guards_roi.timesOff', metro_guards_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           metro_guards_roi.dwellTime = 0.0
+           for i in range(len(metro_guards_roi.timesOn)):
+               metro_guards_roi.dwellTime += metro_guards_roi.timesOff[i] - metro_guards_roi.timesOn[i]
+           task.addData('metro_guards_roi.dwellTime', metro_guards_roi.dwellTime)
+        else:
+           task.addData('metro_guards_roi.timesOn', "")
+           task.addData('metro_guards_roi.timesOff', "")
         task.addData('metro_users_roi.numLooks', metro_users_roi.numLooks)
         if metro_users_roi.numLooks:
            task.addData('metro_users_roi.timesOn', metro_users_roi.timesOn)
@@ -2359,30 +2412,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('metro_users_roi.timesOn', "")
            task.addData('metro_users_roi.timesOff', "")
-        task.addData('uber_inicio_viaje_roi.numLooks', uber_inicio_viaje_roi.numLooks)
-        if uber_inicio_viaje_roi.numLooks:
-           task.addData('uber_inicio_viaje_roi.timesOn', uber_inicio_viaje_roi.timesOn)
-           task.addData('uber_inicio_viaje_roi.timesOff', uber_inicio_viaje_roi.timesOff)
-           # calculate and store dwell times i.e. the duration between look onsets and offsets
-           uber_inicio_viaje_roi.dwellTime = 0.0
-           for i in range(len(uber_inicio_viaje_roi.timesOn)):
-               uber_inicio_viaje_roi.dwellTime += uber_inicio_viaje_roi.timesOff[i] - uber_inicio_viaje_roi.timesOn[i]
-           task.addData('uber_inicio_viaje_roi.dwellTime', uber_inicio_viaje_roi.dwellTime)
-        else:
-           task.addData('uber_inicio_viaje_roi.timesOn', "")
-           task.addData('uber_inicio_viaje_roi.timesOff', "")
-        task.addData('uber_travel_time_roi.numLooks', uber_travel_time_roi.numLooks)
-        if uber_travel_time_roi.numLooks:
-           task.addData('uber_travel_time_roi.timesOn', uber_travel_time_roi.timesOn)
-           task.addData('uber_travel_time_roi.timesOff', uber_travel_time_roi.timesOff)
-           # calculate and store dwell times i.e. the duration between look onsets and offsets
-           uber_travel_time_roi.dwellTime = 0.0
-           for i in range(len(uber_travel_time_roi.timesOn)):
-               uber_travel_time_roi.dwellTime += uber_travel_time_roi.timesOff[i] - uber_travel_time_roi.timesOn[i]
-           task.addData('uber_travel_time_roi.dwellTime', uber_travel_time_roi.dwellTime)
-        else:
-           task.addData('uber_travel_time_roi.timesOn', "")
-           task.addData('uber_travel_time_roi.timesOff', "")
         task.addData('uber_cost_roi.numLooks', uber_cost_roi.numLooks)
         if uber_cost_roi.numLooks:
            task.addData('uber_cost_roi.timesOn', uber_cost_roi.timesOn)
@@ -2395,6 +2424,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('uber_cost_roi.timesOn', "")
            task.addData('uber_cost_roi.timesOff', "")
+        task.addData('uber_travel_time_roi.numLooks', uber_travel_time_roi.numLooks)
+        if uber_travel_time_roi.numLooks:
+           task.addData('uber_travel_time_roi.timesOn', uber_travel_time_roi.timesOn)
+           task.addData('uber_travel_time_roi.timesOff', uber_travel_time_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           uber_travel_time_roi.dwellTime = 0.0
+           for i in range(len(uber_travel_time_roi.timesOn)):
+               uber_travel_time_roi.dwellTime += uber_travel_time_roi.timesOff[i] - uber_travel_time_roi.timesOn[i]
+           task.addData('uber_travel_time_roi.dwellTime', uber_travel_time_roi.dwellTime)
+        else:
+           task.addData('uber_travel_time_roi.timesOn', "")
+           task.addData('uber_travel_time_roi.timesOff', "")
         task.addData('uber_stars_roi.numLooks', uber_stars_roi.numLooks)
         if uber_stars_roi.numLooks:
            task.addData('uber_stars_roi.timesOn', uber_stars_roi.timesOn)
@@ -2419,6 +2460,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
            task.addData('uber_gender_roi.timesOn', "")
            task.addData('uber_gender_roi.timesOff', "")
+        task.addData('uber_travels_roi.numLooks', uber_travels_roi.numLooks)
+        if uber_travels_roi.numLooks:
+           task.addData('uber_travels_roi.timesOn', uber_travels_roi.timesOn)
+           task.addData('uber_travels_roi.timesOff', uber_travels_roi.timesOff)
+           # calculate and store dwell times i.e. the duration between look onsets and offsets
+           uber_travels_roi.dwellTime = 0.0
+           for i in range(len(uber_travels_roi.timesOn)):
+               uber_travels_roi.dwellTime += uber_travels_roi.timesOff[i] - uber_travels_roi.timesOn[i]
+           task.addData('uber_travels_roi.dwellTime', uber_travels_roi.dwellTime)
+        else:
+           task.addData('uber_travels_roi.timesOn', "")
+           task.addData('uber_travels_roi.timesOff', "")
         task.addData('uber_record_roi.numLooks', uber_record_roi.numLooks)
         if uber_record_roi.numLooks:
            task.addData('uber_record_roi.timesOn', uber_record_roi.timesOn)
