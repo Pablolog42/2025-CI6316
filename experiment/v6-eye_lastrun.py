@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on noviembre 21, 2025, at 18:08
+    on noviembre 24, 2025, at 18:05
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -111,8 +111,8 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 # work out from system args whether we are running in pilot mode
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
-_fullScr = False
-_winSize = [1493, 933]
+_fullScr = True
+_winSize = [1920, 1080]
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -181,7 +181,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\pablo\\Desktop\\2025-CI6316\\experiment\\v6-eye_lastrun.py',
+        originPath='C:\\Users\\CI6316 - Grupo 1\\Desktop\\2025-CI6316\\Experiment\\v6-eye_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -242,10 +242,13 @@ def setupWindow(expInfo=None, win=None):
     psychopy.visual.Window
         Window in which to run this experiment.
     """
+    if PILOTING:
+        logging.debug('Fullscreen settings ignored as running in pilot mode.')
+    
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=_winSize, fullscr=_fullScr, screen=0,
+            size=_winSize, fullscr=_fullScr, screen=1,
             winType='pyglet', allowGUI=True, allowStencil=True,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -299,14 +302,16 @@ def setupDevices(expInfo, thisExp, win):
     # --- Setup input devices ---
     ioConfig = {}
     # setup eyetracking
-    ioConfig['eyetracker.hw.mouse.EyeTracker'] = {
+    ioConfig['eyetracker.hw.tobii.EyeTracker'] = {
         'name': 'tracker',
-        'controls': {
-            'move': [],
-            'blink':('MIDDLE_BUTTON',),
-            'saccade_threshold': 0.5,
+        'runtime_settings': {
+            'sampling_rate': '60',
+            'track_eyes': 'BINOCULAR',
         },
     }
+    
+    # Setup iohub keyboard
+    ioConfig['Keyboard'] = dict(use_keymap='psychopy')
     
     # Setup iohub experiment
     ioConfig['Experiment'] = dict(filename=thisExp.dataFileName)
@@ -321,7 +326,7 @@ def setupDevices(expInfo, thisExp, win):
     # create a default keyboard (e.g. to check for escape)
     if deviceManager.getDevice('defaultKeyboard') is None:
         deviceManager.addDevice(
-            deviceClass='keyboard', deviceName='defaultKeyboard', backend='ptb'
+            deviceClass='keyboard', deviceName='defaultKeyboard', backend='iohub'
         )
     if deviceManager.getDevice('respuesta') is None:
         # initialise respuesta
@@ -364,7 +369,7 @@ def pauseExperiment(thisExp, win=None, timers=[], currentRoutine=None):
         defaultKeyboard = deviceManager.addKeyboard(
             deviceClass='keyboard',
             deviceName='defaultKeyboard',
-            backend='PsychToolbox',
+            backend='ioHub',
         )
     # run a while loop while we wait to unpause
     while thisExp.status == PAUSED:
@@ -419,7 +424,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     defaultKeyboard = deviceManager.getDevice('defaultKeyboard')
     if defaultKeyboard is None:
         deviceManager.addDevice(
-            deviceClass='keyboard', deviceName='defaultKeyboard', backend='PsychToolbox'
+            deviceClass='keyboard', deviceName='defaultKeyboard', backend='ioHub'
         )
     eyetracker = deviceManager.getDevice('eyetracker')
     # make sure we're running in the directory for this experiment
